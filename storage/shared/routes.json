@@ -1,0 +1,5 @@
+{
+  "auth": "/api/auth",
+  "auth.check_username": "/api/auth/check_username",
+  "auth.register": "/api/auth/register"
+}

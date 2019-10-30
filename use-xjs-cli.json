@@ -1,0 +1,13 @@
+{
+  "development": {
+    "main": "server.js",
+    "server": "nodemon",
+    "console": "node"
+  },
+  "production": {
+    "main": "server.js",
+    "server": "forever start",
+    "console": "node"
+  },
+  "jobsPath": "jobs"
+}
