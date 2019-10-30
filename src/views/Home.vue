@@ -1,9 +1,14 @@
 <template>
     <section class="section">
         <div class="container home">
-            <div class="columns">
+            <PreLoader v-if="logged===null"/>
+            <div v-else-if="logged" class="has-text-success has-text-centered">
+                <PreLoader/>
+                <h4 class="is-size-4">Logging you in...</h4>
+            </div>
+            <div v-else class="columns">
                 <div class="column is-4-desktop is-offset-4-desktop">
-                    <h3 class="is-size-3">CloudClipper</h3>
+                    <h3 class="is-size-3"><i class="fa fa-paste"></i> CloudClipper</h3>
                     <hr class="m-0">
                     <form @submit="()=>false" class="mt-3">
 
@@ -11,12 +16,12 @@
                             <div class="message">
                                 <a @click.prevent="resetUsername" class="is-pulled-right mr-2">change</a>
                                 <div class="message-body">
-                                    <template v-if="login.showPassword">Sign in to account with username:</template>
+                                    <template v-if="login.userExists">Sign in to account with username:</template>
                                     <template v-else>Create a new account with username:</template>
-                                    <span class="has-text-success"> {{username}}</span>
+                                    <strong class="has-text-success"> {{username}}</strong>
                                 </div>
                             </div>
-                            <template v-if="login.showPassword">
+                            <template v-if="login.userExists">
                                 <div class="field">
                                     <div class="control">
                                         <input v-model="login.password" type="password" placeholder="password"
@@ -37,8 +42,8 @@
                                         Password to access your account with. <br> (Min: 4 characters)
                                     </p>
                                 </div>
-                                <LoadingButton :click="registerUser" class="is-success is-fullwidth">
-                                    REGISTER
+                                <LoadingButton :click="registerUser" class="is-warning is-fullwidth">
+                                    CREATE ACCOUNT
                                 </LoadingButton>
                             </template>
 
@@ -49,8 +54,8 @@
                                     <input v-model="username" type="text" placeholder="username" class="input">
                                 </div>
                             </div>
-                            <LoadingButton :click="checkUsername" class="is-primary is-fullwidth">Check
-                                Username
+                            <LoadingButton :click="checkUsername" class="is-primary is-fullwidth">CHECK
+                                USERNAME
                             </LoadingButton>
                         </template>
 
@@ -70,6 +75,8 @@
 <script>
     // @ is an alias to /src
 
+    import {mapState} from "vuex";
+
     export default {
         name: 'home',
         data() {
@@ -77,7 +84,7 @@
                 username: '',
                 login: {
                     password: '',
-                    showPassword: false,
+                    userExists: false,
                     usernameChecked: false
                 },
 
@@ -87,10 +94,22 @@
             };
         },
 
+        watch: {
+            logged() {
+                if (this.logged) {
+                    setTimeout(() => {
+                        return this.$router.push({name: 'clipboard'});
+                    }, 1000);
+                }
+            }
+        },
+
+        computed: mapState(['logged']),
+
         methods: {
             resetUsername() {
                 this.login.usernameChecked = false;
-                this.login.showPassword = false;
+                this.login.userExists = false;
             },
             checkUsername(btn) {
                 if (!this.username.length) return btn.stopLoading();
@@ -100,7 +119,7 @@
                     username: this.username
                 }, {
                     yes: ({exists}) => {
-                        this.login.showPassword = exists;
+                        this.login.userExists = exists;
                         this.login.usernameChecked = true;
                         this.login.password = "";
                         this.register.password = "";
@@ -108,7 +127,7 @@
                     },
 
                     no: ({exists}) => {
-                        this.login.showPassword = exists;
+                        this.login.userExists = exists;
                         this.login.usernameChecked = false;
                         btn.stopLoading();
                     }
@@ -122,7 +141,7 @@
                     username: this.username,
                     password: this.register.password
                 }, {
-                    yes: () => this.resetUsername(),
+                    yes: () => this.login.userExists = true,
                     any: () => {
                         btn.stopLoading();
                     }
@@ -136,10 +155,14 @@
                     username: this.username,
                     password,
                 }, {
-                    yes: () => this.resetUsername(),
-                    any: () => {
-                        btn.stopLoading();
-                    }
+                    yes: ({user}) => {
+                        this.$store.commit('setLogged', true);
+                        this.$store.commit('setUser', user);
+
+                        this.resetUsername();
+                        return this.$router.push({name: 'clipboard'})
+                    },
+                    any: () =>  btn.stopLoading()
                 });
             }
         }

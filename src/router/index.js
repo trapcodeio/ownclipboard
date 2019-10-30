@@ -1,14 +1,29 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import AuthLayout from '../views/AuthLayout';
+import Dashboard from '../views/Dashboard';
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: '/',
-        name: 'home',
+        name: 'index',
         component: Home
+    },
+
+    // Logged Routes
+    {
+        path: '/',
+        component: AuthLayout,
+        children: [
+            {
+                path: 'clipboard',
+                name: 'clipboard',
+                component: Dashboard
+            }
+        ]
     },
     /*{
       path: '/about',
@@ -24,8 +39,8 @@ const routes = [
 
 const router = new VueRouter({
     mode: 'history',
-    base: process.env.BASE_URL,
+    base: '/',
     routes
-})
+});
 
 export default router

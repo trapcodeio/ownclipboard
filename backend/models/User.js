@@ -15,6 +15,14 @@ class User extends $.model {
         return "users";
     }
 
+    static jsPick(){
+        return [
+            'email',
+            'username',
+            'last_seen'
+        ]
+    }
+
 }
 
 User.prototype.$hidden = [];

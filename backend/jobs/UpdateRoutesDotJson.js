@@ -8,7 +8,6 @@ module.exports = {
     command: 'updateRoutesJson',
     // Job Handler
     handler(args, job) {
-        // $.logAndExit("goat");
         // Your Job Here
         const $path = $.path.storage('shared/routes.json');
         const $pathEncoded = $.path.storage('shared/routes-encrypted.json');
@@ -37,6 +36,7 @@ module.exports = {
         fs.writeFileSync($pathEncoded, routesToStringEncoded);
 
         $.log("File: {storage/shared/routes.json} Updated");
+        $.log("File: {storage/shared/routes-encrypted.json} Updated");
 
 
         // End of job

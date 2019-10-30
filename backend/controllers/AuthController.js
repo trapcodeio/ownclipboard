@@ -1,6 +1,12 @@
 "use strict";
 const bcrypt = require("bcryptjs");
 const User = $.use.model('User');
+
+const DataSchema = {
+    username: 3,
+    password: 3
+};
+
 /**
  * AuthController
  * @type {ControllerService}
@@ -26,19 +32,24 @@ const AuthController = $.handler({
             username = http.body().removeNull(true).get('username', username)
         }
 
-        const user = typeof username === "string" && username.length > 3 ? await User.query().where({username}).first() : false;
+        const user = (typeof username === "string" && !(username.length < DataSchema.username)) ? await User.query().where({username}).first() : false;
         return {user, username}
     },
 
-    auth: () => {
-        return {user: {name: "John"}}
+    auth: (http, {user}) => {
+        const logged = http.isLogged();
+
+        return http.toApi({
+            user: logged ? http.authUser() : false,
+            logged,
+        })
     },
 
     checkUsername: {
         next: async ({http, boot, error}) => {
             const {user, username} = boot;
 
-            if (username && username.length < 4)
+            if (username && username.length < DataSchema.username)
                 return error(`Username too short.`);
 
 
@@ -52,7 +63,7 @@ const AuthController = $.handler({
             if (!user) return error(`Account with  ${username} does not exist.`);
 
             let password = http.body().removeNull(true).get('password', '');
-            if (password.length < 4) {
+            if (password.length < DataSchema.password) {
                 return error(`Password too short.`)
             }
 
@@ -63,8 +74,10 @@ const AuthController = $.handler({
 
             http.loginUser(username);
 
+            user.$pick(User.jsPick());
+
             // Set Session Keys
-            return http.sayToApi(`Login successful.`)
+            return http.toApi({user, __say: `Login successful.`})
         }
     },
 
@@ -85,6 +98,11 @@ const AuthController = $.handler({
 
             return http.sayToApi(`Registration successful, login now!`)
         }
+    },
+
+    logout: (http) => {
+        http.logout();
+        return http.toApi({logged: http.isLogged()});
     }
 });
 

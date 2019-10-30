@@ -9,11 +9,14 @@ import HttpRequest from 'vue-trap-pack/HttpRequest';
 import LoadingButton from "./components/LoadingButton";
 import PreLoader from "./components/PreLoader";
 
+// Decode routes.
 const XjsRoutes = JSON.parse(atob(___));
 const $api = new HttpRequest();
 $api.isXmlRequest();
+
 if (window.hasOwnProperty('NProgress'))
     $api.hasNprogress(window['NProgress']);
+
 $api.routeHandler = XjsRoutesHandler(XjsRoutes);
 $api.events.say = (msg, proceed) => {
     Swal.fire({
@@ -22,9 +25,9 @@ $api.events.say = (msg, proceed) => {
     });
 };
 
-Vue.use(VueTrapPack, {
-    api: $api,
-});
+Vue.use(VueTrapPack, {api: $api});
+
+///////////// Register Components
 Vue.component("LoadingButton", LoadingButton);
 Vue.component("PreLoader", PreLoader);
 

@@ -1,4 +1,7 @@
 {
+  "globalMiddlewares": [
+    "npm://@xpresser/auth/Middlewares/GlobalMiddleware"
+  ],
   "extends": {
     "RequestEngine": [
       "npm://@xpresser/auth/Extends/RequestEngine.js"

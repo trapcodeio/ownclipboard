@@ -9,6 +9,7 @@ exports.up = function (knex) {
         $table.string("password");
         $table.string("empty_password").nullable();
         $table.string("delete_password").nullable();
+        $table.timestamp("last_seen").nullable();
         $table.json("extra").defaultTo("{}");
         $table.timestamps(true, true);
     });
