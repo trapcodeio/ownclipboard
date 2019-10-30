@@ -6,45 +6,54 @@
                     <h3 class="is-size-3">CloudClipper</h3>
                     <hr class="m-0">
                     <form @submit="()=>false" class="mt-3">
-                        <div v-if="!login.usernameChecked" class="field">
-                            <div class="control">
-                                <input v-model="username" type="text" placeholder="username" class="input">
-                            </div>
-                        </div>
-                        <template v-if="login.usernameChecked && login.showPassword">
-                            <div class="field">
-                                <div class="control">
-                                    <input v-model="login.password" type="password" placeholder="password"
-                                           class="input">
-                                </div>
-                            </div>
-                            <LoadingButton :click="checkUsername" class="is-primary">LOGIN</LoadingButton>
-                        </template>
-                        <template v-if="login.usernameChecked && !login.showPassword">
+
+                        <template v-if="login.usernameChecked">
                             <div class="message">
                                 <a @click.prevent="resetUsername" class="is-pulled-right mr-2">change</a>
                                 <div class="message-body">
-                                    Create a new account with username: <span
-                                        class="has-text-success">{{username}}</span>
+                                    <template v-if="login.showPassword">Sign in to account with username:</template>
+                                    <template v-else>Create a new account with username:</template>
+                                    <span class="has-text-success"> {{username}}</span>
                                 </div>
                             </div>
+                            <template v-if="login.showPassword">
+                                <div class="field">
+                                    <div class="control">
+                                        <input v-model="login.password" type="password" placeholder="password"
+                                               class="input">
+                                    </div>
+                                </div>
+                                <LoadingButton :click="loginUser" class="is-success is-fullwidth">LOGIN
+                                </LoadingButton>
+                            </template>
+                            <template v-else>
+                                <div class="field">
+                                    <label class="label">Password</label>
+                                    <div class="control">
+                                        <input v-model="register.password" type="password" placeholder="password"
+                                               class="input">
+                                    </div>
+                                    <p class="help">
+                                        Password to access your account with. <br> (Min: 4 characters)
+                                    </p>
+                                </div>
+                                <LoadingButton :click="registerUser" class="is-success is-fullwidth">
+                                    REGISTER
+                                </LoadingButton>
+                            </template>
+
+                        </template>
+                        <template v-else>
                             <div class="field">
-                                <label class="label">Password</label>
                                 <div class="control">
-                                    <input v-model="register.password" type="password" placeholder="password"
-                                           class="input">
+                                    <input v-model="username" type="text" placeholder="username" class="input">
                                 </div>
-                                <p class="help">
-                                    Password to access your account with. <br> (Min: 4 characters)
-                                </p>
                             </div>
-                            <LoadingButton :click="registerUser" class="is-success is-fullwidth">
-                                REGISTER
+                            <LoadingButton :click="checkUsername" class="is-primary is-fullwidth">Check
+                                Username
                             </LoadingButton>
                         </template>
-                        <LoadingButton v-else :click="checkUsername" class="is-primary is-fullwidth">Check
-                            Username
-                        </LoadingButton>
+
                     </form>
                 </div>
             </div>
@@ -65,11 +74,11 @@
         name: 'home',
         data() {
             return {
-                username: 'appdeveloper',
+                username: '',
                 login: {
                     password: '',
                     showPassword: false,
-                    usernameChecked: true
+                    usernameChecked: false
                 },
 
                 register: {
@@ -84,22 +93,50 @@
                 this.login.showPassword = false;
             },
             checkUsername(btn) {
+                if (!this.username.length) return btn.stopLoading();
+
                 this.login.usernameChecked = false;
                 return this.$api.postToRoute('auth.check_username', {
-                    username: this.login.username
+                    username: this.username
                 }, {
-                    yesOrNo: ({exists}) => {
+                    yes: ({exists}) => {
                         this.login.showPassword = exists;
                         this.login.usernameChecked = true;
+                        this.login.password = "";
+                        this.register.password = "";
                         btn.stopLoading();
                     },
+
+                    no: ({exists}) => {
+                        this.login.showPassword = exists;
+                        this.login.usernameChecked = false;
+                        btn.stopLoading();
+                    }
                 });
             },
             registerUser(btn) {
+                const password = this.register.password;
+                if (!password) return btn.stopLoading();
+
                 return this.$api.postToRoute('auth.register', {
                     username: this.username,
                     password: this.register.password
                 }, {
+                    yes: () => this.resetUsername(),
+                    any: () => {
+                        btn.stopLoading();
+                    }
+                });
+            },
+            loginUser(btn) {
+                const password = this.login.password;
+                if (!password) return btn.stopLoading();
+
+                return this.$api.postToRoute('auth.login', {
+                    username: this.username,
+                    password,
+                }, {
+                    yes: () => this.resetUsername(),
                     any: () => {
                         btn.stopLoading();
                     }

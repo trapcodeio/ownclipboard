@@ -15,11 +15,19 @@ module.exports = {
     paths: {
         base: Base,
         public: "dist",
+        jsonConfigs: "backend://"
     },
     session: {
         startOnBoot: true
     },
     response: {
         cacheFiles: !isDev
+    },
+
+    plugins: {
+        "@xpresser/auth": {
+            model: 'User',
+            modelWhere: 'username'
+        }
     }
 };

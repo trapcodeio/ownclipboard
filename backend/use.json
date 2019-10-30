@@ -1,3 +1,7 @@
 {
-
+  "extends": {
+    "RequestEngine": [
+      "npm://@xpresser/auth/Extends/RequestEngine.js"
+    ]
+  }
 }

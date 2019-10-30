@@ -8,5 +8,6 @@ module.exports = () => {
         Route.get('=auth');
         Route.post('@checkUsername');
         Route.post('@register');
+        Route.post('@login');
     }).controller('Auth', true).as('auth');
 };

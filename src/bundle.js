@@ -15,10 +15,9 @@ $api.isXmlRequest();
 if (window.hasOwnProperty('NProgress'))
     $api.hasNprogress(window['NProgress']);
 $api.routeHandler = XjsRoutesHandler(XjsRoutes);
-$api.events.say = (msg) => {
+$api.events.say = (msg, proceed) => {
     Swal.fire({
-        type: 'error',
-        title: 'Oops...',
+        type: proceed ? 'success' : 'error',
         text: msg,
     });
 };

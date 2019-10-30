@@ -1,4 +1,5 @@
 "use strict";
+const bcrypt = require("bcryptjs");
 const User = $.use.model('User');
 /**
  * AuthController
@@ -19,13 +20,13 @@ const AuthController = $.handler({
     },
 
     boot: async (http) => {
-        let username = http.query('username', false);
+        let username = http.query().removeNull(true).get('username', false);
 
         if (!username) {
-            username = http.body('username', username)
+            username = http.body().removeNull(true).get('username', username)
         }
 
-        const user = typeof username === "string" && username.length ? await User.query().where({username}).first() : false;
+        const user = typeof username === "string" && username.length > 3 ? await User.query().where({username}).first() : false;
         return {user, username}
     },
 
@@ -35,25 +36,54 @@ const AuthController = $.handler({
 
     checkUsername: {
         next: async ({http, boot, error}) => {
-            const {user} = boot;
+            const {user, username} = boot;
 
-            if (!user) return error({exists: false});
-            return http.toApi({exists: true});
+            if (username && username.length < 4)
+                return error(`Username too short.`);
+
+
+            return http.toApi({exists: !!user});
         }
     },
 
-    register: {
-        next: ({http, boot, error}) => {
+    login: {
+        next: async ({http, boot, error}) => {
             const {user, username} = boot;
-            if (user) return error(`Username ${username} already exists.`);
+            if (!user) return error(`Account with  ${username} does not exist.`);
 
-            const password = http.body().removeNull(true).get('password', '');
-
+            let password = http.body().removeNull(true).get('password', '');
             if (password.length < 4) {
                 return error(`Password too short.`)
             }
 
-            return http.toApi({username, password})
+            const isPassword = bcrypt.compareSync(password, user.password);
+            if (!isPassword) {
+                return error(`Password incorrect for username: ${username}`)
+            }
+
+            http.loginUser(username);
+
+            // Set Session Keys
+            return http.sayToApi(`Login successful.`)
+        }
+    },
+
+    register: {
+        next: async ({http, boot, error}) => {
+            const {user, username} = boot;
+            if (user) return error(`Username ${username} already exists.`);
+
+            let password = http.body().removeNull(true).get('password', '');
+            if (password.length < 4) {
+                return error(`Password too short.`)
+            }
+
+            password = bcrypt.hashSync(password, 10);
+            const NewUser = {username, password};
+            // Add user to database
+            await User.query().insert(NewUser);
+
+            return http.sayToApi(`Registration successful, login now!`)
         }
     }
 });
