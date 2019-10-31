@@ -1,1 +1,18 @@
 @import "bulma-helpers";
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: fade_out($black, 0.5);
+  border-radius: 2px
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: fade_out($dark, 0.3);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: lighten($dark, 3%);
+}

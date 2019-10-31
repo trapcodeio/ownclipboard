@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import AuthLayout from '../views/AuthLayout';
 import Dashboard from '../views/Dashboard';
+import Devices from '../views/Settings/Devices';
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,11 @@ const routes = [
                 path: 'clipboard',
                 name: 'clipboard',
                 component: Dashboard
+            },
+            {
+                path: 'devices',
+                name: 'devices',
+                component: Devices
             }
         ]
     },

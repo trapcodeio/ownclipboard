@@ -13,17 +13,20 @@
 
         <div id="authNavMenu" class="navbar-menu">
             <div class="navbar-end mr-5 has-icon-left">
-                <a class="navbar-item" href="https://bulma.io/">
+                <router-link :to="{name: 'clipboard'}" class="navbar-item">
                     <i class="far fa-clipboard"></i> ClipBoard
-                </a>
+                </router-link>
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
+                    <a class="navbar-link">
                         <i class="fa fa-user"></i> Account
                     </a>
                     <div class="navbar-dropdown is-boxed">
-                        <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+                        <router-link class="navbar-item" :to="rl('devices')">
+                            <i class="fa fa-mobile"></i> Devices
+                        </router-link>
+                        <!--<a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
                             <i class="far fa-cog"></i> Settings
-                        </a>
+                        </a>-->
                     </div>
                 </div>
                 <div class="navbar-item">

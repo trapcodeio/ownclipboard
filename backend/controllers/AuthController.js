@@ -17,13 +17,7 @@ const AuthController = $.handler({
     // Controller Middlewares
     middlewares: {},
     // Controller Default Service Error Handler.
-    e: (http, error) => {
-        if (typeof error === "object") {
-            return http.toApiFalse(error);
-        } else {
-            return http.sayToApi(error, false)
-        }
-    },
+    e: $$.defaultErrorHandler,
 
     boot: async (http) => {
         let username = http.query().removeNull(true).get('username', false);
@@ -36,7 +30,7 @@ const AuthController = $.handler({
         return {user, username}
     },
 
-    auth: (http, {user}) => {
+    auth: (http) => {
         const logged = http.isLogged();
 
         return http.toApi({

@@ -1,4 +1,5 @@
 import Vue from "vue";
+import moment from "moment";
 
 import VueTrapPack from 'vue-trap-pack';
 import VTPBuilder from 'vue-trap-pack/Builder';
@@ -8,6 +9,7 @@ import HttpRequest from 'vue-trap-pack/HttpRequest';
 
 import LoadingButton from "./components/LoadingButton";
 import PreLoader from "./components/PreLoader";
+import TimeAgo from "./components/TimeAgo";
 
 // Decode routes.
 const XjsRoutes = JSON.parse(atob(___));
@@ -30,6 +32,8 @@ Vue.use(VueTrapPack, {api: $api});
 ///////////// Register Components
 Vue.component("LoadingButton", LoadingButton);
 Vue.component("PreLoader", PreLoader);
+Vue.component("TimeAgo", TimeAgo);
 
 window['Vue'] = Vue;
+window['moment'] = moment;
 window['VTPBuilder'] = VTPBuilder;

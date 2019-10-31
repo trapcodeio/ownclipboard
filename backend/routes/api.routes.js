@@ -4,6 +4,7 @@
 const Route = $.router;
 
 module.exports = () => {
+
     Route.path('auth', () => {
         Route.get('=auth');
         Route.post('@checkUsername');
@@ -11,4 +12,6 @@ module.exports = () => {
         Route.post('@login');
         Route.post('@logout');
     }).controller('Auth', true).as('auth');
+
+    // Route.path('')
 };

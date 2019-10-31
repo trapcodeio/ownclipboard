@@ -3,5 +3,9 @@
   "auth.check_username": "/api/auth/check_username",
   "auth.login": "/api/auth/login",
   "auth.logout": "/api/auth/logout",
-  "auth.register": "/api/auth/register"
+  "auth.register": "/api/auth/register",
+  "content": "/api/logged/content",
+  "content.create": "/api/logged/content/create",
+  "devices": "/api/logged/devices",
+  "devices.add": "/api/logged/devices/add"
 }

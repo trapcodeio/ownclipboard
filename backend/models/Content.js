@@ -15,6 +15,17 @@ class Content extends $.model {
         return "contents";
     }
 
+    static get jsPick() {
+        return [
+            "code",
+            "type",
+            "content",
+            "locked",
+            "favorite",
+            "created_at"
+        ]
+    }
+
 }
 
 Content.prototype.$hidden = [];
