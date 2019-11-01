@@ -45,7 +45,7 @@ const ContentController = $.handler({
         if (search && search.length > 1) {
             query.where('content', 'like', `%${search}%`)
         }
-        
+
         const contents = await query.orderBy('id', 'desc')
             .paginate(page, 20);
 
@@ -56,39 +56,8 @@ const ContentController = $.handler({
         return http.toApi({contents, search});
     },
 
-    create: async (http, {user}, error) => {
-        const user_id = user.id;
-
-        let exists = true;
-        let text = http.body('content', undefined);
-        if (!text || (text && !text.trim().length)) {
-            return error(`Content is empty.`);
-        }
-
-        text = text.trim();
-
-
-        const isUrl = $$.validURL(text);
-        const type = isUrl ? 'url' : 'text';
-
-
-        let content = await Content.query().where({user_id, content: text}).first();
-
-
-        if (!content) {
-            content = await Content.query().insert({
-                code: $.helpers.randomStr(20),
-                type,
-                user_id,
-                content: text,
-            });
-
-            exists = false;
-        }
-
-        content.$pick(Content.jsPick);
-
-        return http.toApi({content, exists});
+    create: {
+        'content.add': true
     },
 
     delete: async (http, {content}) => {

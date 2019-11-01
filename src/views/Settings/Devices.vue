@@ -29,7 +29,8 @@
                             <i v-if="item.used" class="far fa-check-circle has-text-success"></i>
                             <i v-else class="far fa-minus-circle"></i>
 
-                            <a @click.prevent="deleteDevice(index)" class="is-pulled-right"><i class="fa fa-trash has-text-danger"></i></a>
+                            <a @click.prevent="deleteDevice(index)" class="is-pulled-right"><i
+                                    class="fa fa-trash has-text-danger"></i></a>
 
                         </div>
                     </template>

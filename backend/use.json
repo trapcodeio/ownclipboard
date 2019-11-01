@@ -6,5 +6,8 @@
     "RequestEngine": [
       "npm://@xpresser/auth/Extends/RequestEngine.js"
     ]
+  },
+  "autoload": {
+    "controllerServices": "all"
   }
 }

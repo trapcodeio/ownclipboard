@@ -11,14 +11,15 @@ const ApiController = $.handler({
     // Controller Middlewares
     middlewares: {},
     // Controller Default Service Error Handler.
-    e: (x, error) => x.send({error}),
+    e: $$.defaultApiErrorHandler,
 
     boot: async (http) => {
         const api_key = http.locals.get('api_key');
         const device = http.locals.get('api_device');
         const user = http.locals.get('api_user');
+        const clip = http.locals.get('api_clip');
 
-        return {device, api_key, user};
+        return {device, api_key, user, clip};
     },
 
 
@@ -68,11 +69,17 @@ const ApiController = $.handler({
 
         return http.toApi({search, clips});
     },
-    add: () => "All Clip",
-    delete: () => "Delete Clip",
-    search: () => "Search Clips",
-    notFound: (http) => http.toApiFalse({
-        error: `Route not found!`
+    add: {
+        'content.add': 'api'
+    },
+    delete: async (http, {clip}) => {
+        const code = clip.code;
+        await clip.$query().delete();
+        return http.toApi({deleted: true, code})
+    },
+    notFound: (http, boot, error) => error({
+        type: '404',
+        message: `Route not found!`
     }, 404),
 });
 
