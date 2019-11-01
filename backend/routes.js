@@ -2,10 +2,17 @@
  * @type {import("@xpresser/router") | XpresserRouter}
  */
 const Route = $.router;
-const apiRoutes = require('./routes/api.routes');
+
+// Require Api Routes
+require('./routes/api.routes.js');
+
+const apiRoutes = require('./routes/auth.routes');
 const loggedRoutes = require('./routes/logged.routes');
 
-Route.get('/', 'App@index');
-Route.path('/api', apiRoutes).middleware('XhrRequestsOnly');
-Route.path('/api/logged', loggedRoutes).middleware('XhrRequestsOnly');
+Route.path('/secure').middleware('XhrRequestsOnly');
+Route.path('/secure', apiRoutes);
+Route.path('/secure/logged', loggedRoutes).middleware(['Auth']);
+Route.routesAfterPlugins =  () => {
+    Route.get('/*', 'App@vue');
+};
 

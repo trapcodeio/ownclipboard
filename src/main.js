@@ -1,12 +1,11 @@
-// Css
-import './scss/bs4-helper.scss';
-import './scss/app.scss';
-
 // SweetAlert
 import Swal from "sweetalert2";
 import '../node_modules/@sweetalert2/themes/dark/dark.min.css';
-
 window['Swal'] = Swal;
+
+// Css
+import './scss/bs4-helper.scss';
+import './scss/app.scss';
 
 
 // Import Bundle

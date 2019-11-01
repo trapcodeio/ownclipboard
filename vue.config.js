@@ -3,7 +3,7 @@ const env = process.env;
 module.exports = {
     devServer: {
         proxy: {
-            '/api': {
+            '/secure': {
                 target: env.VUE_APP_SERVER_URL,
                 ws: false,
                 changeOrigin: true

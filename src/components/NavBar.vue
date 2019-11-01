@@ -4,17 +4,17 @@
             <router-link :to="{name: 'clipboard'}" class="navbar-item">
                 <h3 class="is-size-4"><i class="far fa-paste"></i> CloudClipper</h3>
             </router-link>
-            <div class="navbar-burger burger" data-target="authNavMenu">
+            <div @click.prevent="toggleMenu" :class="burgerClass" data-target="authNavMenu">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
 
-        <div id="authNavMenu" class="navbar-menu">
+        <div id="authNavMenu" :class="mainClass">
             <div class="navbar-end mr-5 has-icon-left">
                 <router-link :to="{name: 'clipboard'}" class="navbar-item">
-                    <i class="far fa-clipboard"></i> ClipBoard
+                    <i class="far fa-clipboard"></i> History
                 </router-link>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
@@ -43,7 +43,34 @@
 
 <script>
     export default {
+        data() {
+            return {
+                mainClass: {
+                    'navbar-menu': true,
+                    'is-active': false
+                },
+
+                burgerClass: {
+                    'navbar-burger': true,
+                    'burger': true,
+                    'is-active': false,
+                }
+            }
+        },
+        watch: {
+            '$route.name'() {
+                this.hideBurger();
+            }
+        },
         methods: {
+            hideBurger() {
+                this.mainClass['is-active'] = false;
+                this.burgerClass['is-active'] = false;
+            },
+            toggleMenu() {
+                this.mainClass['is-active'] = !this.mainClass['is-active'];
+                this.burgerClass['is-active'] = !this.burgerClass['is-active'];
+            },
             logout(btn) {
                 return this.$api.postToRoute('auth.logout', {}, {
                     yes: () => {

@@ -1,7 +1,7 @@
 <template>
     <section @paste="onPaste" @keyup.ctrl="onCtrl" class="section">
         <div class="container">
-            <div class="box has-text-centered py-4 has-background-dark">
+            <div class="box has-text-centered py-4 has-background-grey-darker">
                 <!--<div class="is-pulled-right">
                     AutoPost
                     <Toggle v-model="autoPost" :show-options="false"/>
@@ -11,14 +11,27 @@
                 <button @click.prevent="onPaste" class="button mr-2"><i class="fa fa-paste mr-2"></i> PASTE</button>
                 <!--                <button class="button"><i class="fa fa-pencil mr-2"></i> CREATE POST</button>-->
             </div>
+            <div class="columns">
+                <div class="column is-12">
+
+                    <div class="control">
+                        <input v-model="search" placeholder="Search." type="search"
+                               class="input has-background-dark is-dark is-medium has-text-white">
+                    </div>
+                    <div v-if="isSearching" class="has-text-centered mt-3 is-size-4 has-text-success">
+                        <i class="fad fa-spinner-third fa-spin mr-2"></i>
+                        <span class="is-size-6 has-text-grey-light">Searching for <strong class="has-text-success">{{search}}</strong>...</span>
+                    </div>
+                </div>
+            </div>
             <template v-if="loaded">
-                <h4 class="is-size-4 my-2">History</h4>
+                <h6 v-if="searchQuery&&searchQuery.length" class="is-size-6 my-2">Results for search <span class="has-text-success">{{search}}</span></h6>
+                <h4 v-else class="is-size-4 my-2">History</h4>
                 <template v-for="(item, index) in items">
-                    <div :key="index" class="box has-background-dark py-3">
+                    <div :key="index"
+                         class="box has-background-dark py-3 history">
                         <div class="is-clearfix">
-                            <div class="is-pulled-left">
-                            </div>
-                            <div class="is-pulled-right">
+                            <div class="is-pulled-right is-size-7">
                                 <small>({{item.content.length}})</small>
                                 -
                                 <small v-if="item.is_adding"><i
@@ -27,25 +40,61 @@
                                     <TimeAgo :date="item.created_at"/>
                                 </small>
                             </div>
-
                         </div>
                         <div>
-                            <code class="has-background-dark" style="color: antiquewhite">
-                                <a v-if="item.type==='url'" target="_blank" :href="item.content" class="has-text-success">{{item.content
+                            <code class="has-background-dark text-brea">
+                                <a v-if="item.type==='url'" target="_blank" :href="item.content"
+                                   class="has-text-success">{{item.content
                                     | shorten }}</a>
                                 <span v-else>{{item.content | shorten }}</span>
                             </code>
+                        </div>
+                        <div class="is-clearfix is-size-6 mt-2 history-actions">
+                            <div class="is-pulled-left">
+                                <a v-clipboard:copy="item.content" v-clipboard:success="onCopy"
+                                   class="has-text-success"><i
+                                        class="fad fa-copy"></i> <small>copy</small></a>
+                            </div>
+                            <div class="is-pulled-right">
+                                <template v-if="item.content.length>200">
+                                    <a @click.prevent="viewHistory=item" class="has-text-info mr-2"><i
+                                            class="fad fa-eye"></i> <small>view</small></a> -
+                                </template>
+                                <a @click.prevent="deleteItem(index)" class="has-text-danger ml-2"><i
+                                        class="fad fa-trash"></i></a>
+                            </div>
                         </div>
                     </div>
                 </template>
                 <Pagination v-model="page" :data="contents"/>
             </template>
             <PreLoader class="mt-5" v-else/>
+            <div v-if="viewHistory!==null" class="modal is-active">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <div class="box has-background-dark">
+                        <div v-html="viewHistory.html_formatted ||viewHistory.content" :readonly="true"></div>
+                    </div>
+                    <div class="is-clearfix is-size-5">
+                        <div class="is-pulled-left">
+                            <a v-clipboard:copy="viewHistory.content" v-clipboard:success="onCopy"
+                               class="has-text-success"><i
+                                    class="fad fa-copy"></i> <small>COPY</small></a>
+                        </div>
+                        <div class="is-pulled-right">
+                            <a @click.prevent="viewHistory=null" class="has-text-danger ml-2"><i
+                                    class="far fa-times"></i> <small>CLOSE</small></a>
+                        </div>
+                    </div>
+                </div>
+                <button @click="viewHistory=null" class="modal-close is-large" aria-label="close"></button>
+            </div>
         </div>
     </section>
 </template>
 
 <script>
+
     import {mapState} from "vuex";
     import Toggle from "../components/Toggle";
     import Pagination from "../components/Pagination";
@@ -70,6 +119,12 @@
         components: {Toggle, Pagination},
         data() {
             return {
+                search: '',
+                isSearching: false,
+                searchTimeout: -1,
+
+                viewHistory: null,
+                isHovered: {},
                 autoPost: true,
                 pasteData: "",
                 isAdding: false,
@@ -81,7 +136,11 @@
         },
 
         computed: {
-            ...mapState(['user'])
+            ...mapState(['user']),
+
+            searchQuery() {
+                return this.$route.query.search
+            }
         },
 
         watch: {
@@ -93,9 +152,28 @@
             },
 
             '$route.query'() {
-                this.loaded = false;
+                if (!this.searchQuery)
+                    this.loaded = false;
                 this.reloadFetchedData()
             },
+
+            search() {
+                const search = this.search;
+                if (search.length > 1 && this.search !== this.searchQuery) {
+                    this.isSearching = true;
+                    clearTimeout(this.searchTimeout);
+                    this.searchTimeout = setTimeout(() => {
+                        const query = {search};
+                        this.$router.push({name: 'clipboard', query})
+                    }, 400);
+                } else {
+                    clearTimeout(this.searchTimeout);
+                    this.isSearching = false;
+                    if (this.searchQuery) {
+                        this.$router.push({name: 'clipboard'})
+                    }
+                }
+            }
 
         },
 
@@ -106,17 +184,30 @@
             }
         },
 
+        mounted() {
+            if (this.searchQuery) {
+                this.search = this.searchQuery;
+            }
+        },
+
         methods: {
-            mountFromServer({contents}) {
+            mountFromServer({contents, search}) {
                 if (contents) {
                     this.items = contents.data;
                     this.contents = contents;
                 }
+
+                if (search) {
+                    this.isSearching = false;
+                }
+
                 this.loaded = true;
             },
-            onCtrl(evt) {
-                console.log('on ctrl', evt);
-                return true;
+            onCopy() {
+                return Swal.fire({
+                    text: "Copied successfully!",
+                    type: "success"
+                });
             },
             removeItem(code) {
                 const items = this.items;
@@ -158,7 +249,56 @@
                 this.pasteData = await window.navigator.clipboard.readText() || "";
                 this.addPasteData();
                 return true;
+            },
+
+            deleteItem(index) {
+                const canDelete = confirm("Are you sure you want to delete this history.");
+                if (canDelete) {
+                    const item = this.items[index];
+                    this.items.splice(index, 1);
+
+                    return this.$api.deleteFromRoute(['content.delete', item.code], {}, {
+                        no: () => {
+                            this.items.splice(index, 1, item);
+                        },
+                    })
+                }
             }
         }
     });
 </script>
+
+<style lang="scss" scoped>
+    input::placeholder {
+        color: grey;
+    }
+
+    .box.history {
+        .history-actions {
+            transition: all .0s;
+            opacity: .4;
+        }
+
+        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+
+        code {
+            color: antiquewhite;
+        }
+
+        &:hover {
+            margin-left: -10px;
+            margin-right: -10px;
+            position: relative;
+            transition: all .2s;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+
+            code {
+                color: white;
+            }
+
+            .history-actions {
+                opacity: 1;
+            }
+        }
+    }
+</style>

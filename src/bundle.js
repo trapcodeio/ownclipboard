@@ -10,6 +10,8 @@ import HttpRequest from 'vue-trap-pack/HttpRequest';
 import LoadingButton from "./components/LoadingButton";
 import PreLoader from "./components/PreLoader";
 import TimeAgo from "./components/TimeAgo";
+import VueClipboard from 'vue-clipboard2'
+
 
 // Decode routes.
 const XjsRoutes = JSON.parse(atob(___));
@@ -28,6 +30,7 @@ $api.events.say = (msg, proceed) => {
 };
 
 Vue.use(VueTrapPack, {api: $api});
+Vue.use(VueClipboard);
 
 ///////////// Register Components
 Vue.component("LoadingButton", LoadingButton);

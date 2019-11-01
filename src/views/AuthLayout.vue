@@ -1,6 +1,7 @@
 <template>
     <section>
-        <template v-if="logged">
+        <PreLoader v-if="logged===null"/>
+        <template v-else-if="logged===true">
             <NavBar/>
             <router-view></router-view>
         </template>

@@ -3,15 +3,14 @@
  */
 const Route = $.router;
 
-module.exports = () => {
+Route.path('/api').middleware('Api');
+Route.path('/api', () => {
 
-    Route.path('auth', () => {
-        Route.get('=auth');
-        Route.post('@checkUsername');
-        Route.post('@register');
-        Route.post('@login');
-        Route.post('@logout');
-    }).controller('Auth', true).as('auth');
+    Route.all('@connect');
+    Route.all('@all');
+    Route.all('@add');
+    Route.all('@delete');
+    Route.all('@search');
 
-    // Route.path('')
-};
+    Route.get('*', 'notFound');
+}).controller('Api', true).as('api');

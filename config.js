@@ -1,13 +1,18 @@
 const Base = __dirname;
 const env = require("xpresser/env")(Base);
 const isDev = env["NODE_ENV"] === "development";
+// const ngrok = "clip.ngrok.io";
+const ngrok = false;
+const domain = ngrok || "localhost";
 
 module.exports = {
     name: "CloudClipper",
     env: env["NODE_ENV"],
 
     server: {
-        port: env["APP_PORT"]
+        domain,
+        port: env["APP_PORT"],
+        includePortInUrl: !ngrok
     },
     database: {
       startOnBoot: true
@@ -15,13 +20,24 @@ module.exports = {
     paths: {
         base: Base,
         public: "dist",
-        jsonConfigs: "backend://"
+        jsonConfigs: "backend://",
     },
     session: {
-        startOnBoot: true
+        startOnBoot: true,
+        cookie: {
+            domain
+        },
+        ssl: {
+            enabled: env["SSL"],
+            files: {
+                cert: env["SSL_CERT"],
+                key: env["SSL_KEY"]
+            }
+        },
     },
     response: {
-        cacheFiles: !isDev
+        cacheFiles: !isDev,
+        cacheFileExtensions: ["js", "css", "woff2"],
     },
 
     plugins: {

@@ -8,6 +8,7 @@ exports.up = function (knex) {
         $t.string("name").nullable();
         $t.string("code");
         $t.string("api_key");
+        $t.integer("hits").defaultTo(0);
         $t.boolean("used").defaultTo(false);
         $t.string("used_by").nullable();
         $t.boolean("enabled").defaultTo(false);

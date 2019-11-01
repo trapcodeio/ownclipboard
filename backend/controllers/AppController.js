@@ -16,7 +16,7 @@ const AppController = $.handler({
      * Example Method.
      * @returns {*}
      */
-    index: () => "hello World",
+    vue: (http) => http.res.sendFile($.path.base("dist/index.html")),
 });
 
 

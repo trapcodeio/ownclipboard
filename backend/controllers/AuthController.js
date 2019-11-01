@@ -39,59 +39,53 @@ const AuthController = $.handler({
         })
     },
 
-    checkUsername: {
-        next: async ({http, boot, error}) => {
-            const {user, username} = boot;
+    checkUsername: async (http, boot, error) => {
+        const {user, username} = boot;
 
-            if (username && username.length < DataSchema.username)
-                return error(`Username too short.`);
+        if (username && username.length < DataSchema.username)
+            return error(`Username too short.`);
 
 
-            return http.toApi({exists: !!user});
-        }
+        return http.toApi({exists: !!user});
     },
 
-    login: {
-        next: async ({http, boot, error}) => {
-            const {user, username} = boot;
-            if (!user) return error(`Account with  ${username} does not exist.`);
+    login: async (http, boot, error) => {
+        const {user, username} = boot;
+        if (!user) return error(`Account with  ${username} does not exist.`);
 
-            let password = http.body().removeNull(true).get('password', '');
-            if (password.length < DataSchema.password) {
-                return error(`Password too short.`)
-            }
-
-            const isPassword = bcrypt.compareSync(password, user.password);
-            if (!isPassword) {
-                return error(`Password incorrect for username: ${username}`)
-            }
-
-            http.loginUser(username);
-
-            user.$pick(User.jsPick());
-
-            // Set Session Keys
-            return http.toApi({user, __say: `Login successful.`})
+        let password = http.body().removeNull(true).get('password', '');
+        if (password.length < DataSchema.password) {
+            return error(`Password too short.`)
         }
+
+        const isPassword = bcrypt.compareSync(password, user.password);
+        if (!isPassword) {
+            return error(`Password incorrect for username: ${username}`)
+        }
+
+        http.loginUser(username);
+
+        user.$pick(User.jsPick());
+
+        // Set Session Keys
+        return http.toApi({user, __say: `Login successful.`})
     },
 
-    register: {
-        next: async ({http, boot, error}) => {
-            const {user, username} = boot;
-            if (user) return error(`Username ${username} already exists.`);
+    register: async (http, boot, error) => {
+        const {user, username} = boot;
+        if (user) return error(`Username ${username} already exists.`);
 
-            let password = http.body().removeNull(true).get('password', '');
-            if (password.length < 4) {
-                return error(`Password too short.`)
-            }
-
-            password = bcrypt.hashSync(password, 10);
-            const NewUser = {username, password};
-            // Add user to database
-            await User.query().insert(NewUser);
-
-            return http.sayToApi(`Registration successful, login now!`)
+        let password = http.body().removeNull(true).get('password', '');
+        if (password.length < 4) {
+            return error(`Password too short.`)
         }
+
+        password = bcrypt.hashSync(password, 10);
+        const NewUser = {username, password};
+        // Add user to database
+        await User.query().insert(NewUser);
+
+        return http.sayToApi(`Registration successful, login now!`)
     },
 
     logout: (http) => {

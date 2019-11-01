@@ -1,11 +1,19 @@
 {
-  "auth": "/api/auth",
-  "auth.check_username": "/api/auth/check_username",
-  "auth.login": "/api/auth/login",
-  "auth.logout": "/api/auth/logout",
-  "auth.register": "/api/auth/register",
-  "content": "/api/logged/content",
-  "content.create": "/api/logged/content/create",
-  "devices": "/api/logged/devices",
-  "devices.add": "/api/logged/devices/add"
+  "api.add": "/api/add",
+  "api.all": "/api/all",
+  "api.connect": "/api/connect",
+  "api.delete": "/api/delete",
+  "api.not_found": "/api/",
+  "api.search": "/api/search",
+  "auth": "/secure/auth",
+  "auth.check_username": "/secure/auth/check_username",
+  "auth.login": "/secure/auth/login",
+  "auth.logout": "/secure/auth/logout",
+  "auth.register": "/secure/auth/register",
+  "content": "/secure/logged/content",
+  "content.create": "/secure/logged/content/create",
+  "content.delete": "/secure/logged/content/_??_/delete",
+  "devices": "/secure/logged/devices",
+  "devices.add": "/secure/logged/devices/add",
+  "devices.delete": "/secure/logged/devices/_??_/delete"
 }
