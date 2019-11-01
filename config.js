@@ -3,7 +3,7 @@ const env = require("xpresser/env")(Base);
 const isDev = env["NODE_ENV"] === "development";
 // const ngrok = "clip.ngrok.io";
 const ngrok = false;
-const domain = ngrok || "localhost";
+const domain = ngrok || env["APP_DOMAIN"] || "localhost";
 
 module.exports = {
     name: "CloudClipBoard",
