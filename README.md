@@ -1,4 +1,4 @@
-# cloudclipper
+# CloudClipBoard
 
 ## Project setup
 ```

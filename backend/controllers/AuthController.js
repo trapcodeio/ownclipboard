@@ -26,6 +26,8 @@ const AuthController = $.handler({
             username = http.body().removeNull(true).get('username', username)
         }
 
+        if (username) username = username.toLowerCase();
+
         const user = (typeof username === "string" && !(username.length < DataSchema.username)) ? await User.query().where({username}).first() : false;
         return {user, username}
     },
@@ -44,7 +46,6 @@ const AuthController = $.handler({
 
         if (username && username.length < DataSchema.username)
             return error(`Username too short.`);
-
 
         return http.toApi({exists: !!user});
     },

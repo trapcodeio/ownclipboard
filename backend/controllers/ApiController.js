@@ -26,17 +26,20 @@ const ApiController = $.handler({
      * Example Method.
      * @returns {*}
      */
-    connect: async (http, {device}) => {
+    connect: async (http, {device, user}) => {
         const used_by = http.body('device_id', null);
 
         if (!device.used) {
             await device.$query().update({used: true, used_by})
         }
 
-        return http.toApi(device.$pick([
-            'api_key',
-            'hits'
-        ]));
+        return http.toApi({
+            ...device.$pick([
+                'api_key',
+                'hits'
+            ]),
+            username: user.username
+        });
     },
 
 

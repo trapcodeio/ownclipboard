@@ -7,8 +7,8 @@
                 <h4 class="is-size-4">Logging you in...</h4>
             </div>
             <div v-else class="columns">
-                <div class="column is-4-desktop is-offset-4-desktop">
-                    <h3 class="is-size-3"><i class="fa fa-paste"></i> CloudClipper</h3>
+                <div class="column is-6-tablet is-offset-3-tablet is-4-desktop is-offset-4-desktop">
+                    <h3 class="is-size-3"><i class="fa fa-paste"></i> CloudClipBoard</h3>
                     <hr class="m-0">
                     <form @submit="()=>false" class="mt-3">
 
@@ -18,7 +18,7 @@
                                 <div class="message-body">
                                     <template v-if="login.userExists">Sign in to account with username:</template>
                                     <template v-else>Create a new account with username:</template>
-                                    <strong class="has-text-success"> {{username}}</strong>
+                                    <strong class="has-text-success"> {{username.toLowerCase()}}</strong>
                                 </div>
                             </div>
                             <template v-if="login.userExists">
