@@ -10,8 +10,8 @@ module.exports = (next) => {
         }
     };
 
-    $$.defaultApiErrorHandler = (http, error, status=200) => {
-        return http.res.status(status).json({error});
+    $$.defaultApiErrorHandler = (http, error, status = 200) => {
+        return http.res.status(status).json({error, status});
     };
 
     $$.validURL = (str) => {

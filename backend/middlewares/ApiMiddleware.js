@@ -11,8 +11,8 @@ module.exports = {
 
     // Default middleware action
     async allow(http) {
-        const error = (error, status=200) => {
-            return http.res.status(status).json({error});
+        const error = (error, status = 200) => {
+            return $$.defaultApiErrorHandler(http, error, status);
         };
         // Errors
         const apiKeyNotFound = {type: 'not_found', message: `ApiKey not found in request.`};
