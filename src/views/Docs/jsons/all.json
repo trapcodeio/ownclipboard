@@ -1,0 +1,40 @@
+{
+  "status": 200,
+  "data": {
+    "clips": {
+      "total": "TOTAL_RESULTS_IN_DATABASE",
+      "perPage": "TOTAL_RESULTS_RETURNED",
+      "page": "CURRENT_PAGE",
+      "lastPage": "LAST_PAGE_NUMBER",
+      "data": [
+        {
+          "code": "{string:20}",
+          "type": "text",
+          "content": "Clip 1",
+          "locked": 0,
+          "favorite": 0,
+          "created_at": "2019-11-01 23:27:05",
+          "html_formatted": "Clip 1"
+        },
+        {
+          "code": "{string:20}",
+          "type": "text",
+          "content": "Clip 2 \\n Next line",
+          "locked": 0,
+          "favorite": 0,
+          "created_at": "2019-11-01 23:27:05",
+          "html_formatted": "Clip 2 <br> Next line"
+        },
+        {
+          "code": "{string:20}",
+          "type": "url",
+          "content": "https://vueschool.io/",
+          "locked": 0,
+          "favorite": 0,
+          "created_at": "2019-11-01 10:25:01",
+          "html_formatted": "https://vueschool.io/"
+        }
+      ]
+    }
+  }
+}

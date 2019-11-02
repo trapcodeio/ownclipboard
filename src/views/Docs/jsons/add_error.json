@@ -1,0 +1,7 @@
+{
+  "status": 422,
+  "error": {
+    "type": "empty_content",
+    "message": "Content is empty."
+  }
+}

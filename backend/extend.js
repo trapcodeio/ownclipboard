@@ -11,7 +11,11 @@ module.exports = (next) => {
     };
 
     $$.defaultApiErrorHandler = (http, error, status = 200) => {
-        return http.res.status(status).json({error, status});
+        return http.res.status(status).json({status, error});
+    };
+
+    $$.toApi = (http, data, status = 200) => {
+        return http.res.status(status).json({status, data});
     };
 
     $$.validURL = (str) => {

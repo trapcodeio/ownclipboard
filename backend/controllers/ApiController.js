@@ -28,19 +28,25 @@ const ApiController = $.handler({
      * @returns {*}
      */
     connect: async (http, {device, user}) => {
-        const used_by = http.body('device_id', null);
+        let used_by = http.body('device_id', undefined);
 
         if (!device.used) {
-            await device.$query().update({used: true, used_by})
+            device = await device.$query().updateAndFetch({used: true, used_by})
         }
 
-        return http.toApi({
+        used_by = device.used_by;
+
+        const data = {
             ...device.$pick([
                 'api_key',
-                'hits'
+                'hits',
+                'used_by'
             ]),
-            username: user.username
-        });
+            username: user.username,
+            used_by
+        };
+
+        return $$.toApi(http, data);
     },
 
 
@@ -67,16 +73,19 @@ const ApiController = $.handler({
             content.$pick(Content.jsPick);
         }
 
-        return http.toApi({search, clips});
+        return $$.toApi(http, {search, clips});
     },
+
     add: {
         'content.add': 'api'
     },
+
     delete: async (http, {clip}) => {
         const code = clip.code;
         await clip.$query().delete();
-        return http.toApi({deleted: true, code})
+        return $$.toApi(http, {deleted: true, code})
     },
+
     notFound: (http, boot, error) => error({
         type: '404',
         message: `Route not found!`

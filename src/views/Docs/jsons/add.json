@@ -1,0 +1,13 @@
+{
+  "status": 200,
+  "data": {
+    "content": {
+      "code": "{string:20}",
+      "type": "text|url",
+      "content": "Your content",
+      "created_at": "2019-11-02 12:21:39",
+      "html_formatted": "Your content formatted in html"
+    },
+    "exists": false
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "status": 401,
+  "error": {
+    "type": "not_valid",
+    "message": "ApiKey not connected, use /api/connect for first api key connection."
+  }
+}

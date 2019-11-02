@@ -1,0 +1,7 @@
+{
+  "status": 401,
+  "error": {
+    "type": "api_key_not_found",
+    "message": "ApiKey not found in request."
+  }
+}

@@ -44,8 +44,9 @@ ContentCService.add = async (opt, {http, boot: {user}, error}) => {
     }
 
     content.$pick(Content.jsPick);
+    const data = {content, exists};
 
-    return http.toApi({content, exists});
+    return isApi ? $$.toApi(http, data) : http.toApi(data);
 };
 
 module.exports = ContentCService;

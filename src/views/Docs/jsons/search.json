@@ -1,0 +1,32 @@
+{
+  "status": 200,
+  "data": {
+    "search": "clip",
+    "clips": {
+      "total": 2,
+      "perPage": 10,
+      "page": 1,
+      "lastPage": 1,
+      "data": [
+        {
+          "code": "{string:20}",
+          "type": "text",
+          "content": "Clip 1",
+          "locked": 0,
+          "favorite": 0,
+          "created_at": "2019-11-01 23:27:05",
+          "html_formatted": "Clip 1"
+        },
+        {
+          "code": "{string:20}",
+          "type": "text",
+          "content": "Clip 2 \\n Next line",
+          "locked": 0,
+          "favorite": 0,
+          "created_at": "2019-11-01 23:27:05",
+          "html_formatted": "Clip 2 <br> Next line"
+        }
+      ]
+    }
+  }
+}

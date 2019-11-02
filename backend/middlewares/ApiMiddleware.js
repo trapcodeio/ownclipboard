@@ -15,10 +15,10 @@ module.exports = {
             return $$.defaultApiErrorHandler(http, error, status);
         };
         // Errors
-        const apiKeyNotFound = {type: 'not_found', message: `ApiKey not found in request.`};
-        const apiKeyNotValid = {type: "not_valid", message: `ApiKey found but not valid.`};
+        const apiKeyNotFound = {type: 'api_key_not_found', message: `ApiKey not found in request.`};
+        const apiKeyNotValid = {type: 'api_key_not_valid', message: `ApiKey found but not valid.`};
         const apiKeyNotConnected = {
-            type: "not_valid",
+            type: "api_key_not_connected",
             message: `ApiKey not connected, use /api/connect for first api key connection.`
         };
 
