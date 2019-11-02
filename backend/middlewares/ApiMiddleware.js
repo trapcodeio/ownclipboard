@@ -32,22 +32,22 @@ module.exports = {
 
         // if false or not string trigger error.
         if (!apiKey) {
-            return error({error: apiKeyNotFound}, 401);
+            return error(apiKeyNotFound, 401);
         }
 
         if (typeof apiKey !== "string" || apiKey.length !== 100) {
-            return error({error: apiKeyNotValid}, 401);
+            return error(apiKeyNotValid, 401);
         }
 
         // Find ApiKey
         const device = await Device.query().where({api_key: apiKey}).first();
         if (!device) {
-            return error({error: apiKeyNotValid}, 401);
+            return error(apiKeyNotValid, 401);
         }
 
         const url = '/connect';
         if (!device.used && http.req.path !== url) {
-            return http.send({error: apiKeyNotConnected}, 401);
+            return error(apiKeyNotConnected, 401);
         }
 
         const user = await User.query().where({id: device.user_id}).first();

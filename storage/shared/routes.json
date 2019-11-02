@@ -4,7 +4,6 @@
   "api.connect": "/api/connect",
   "api.delete": "/api/delete",
   "api.not_found": "/api/",
-  "api.search": "/api/search",
   "auth": "/secure/auth",
   "auth.check_username": "/secure/auth/check_username",
   "auth.login": "/secure/auth/login",

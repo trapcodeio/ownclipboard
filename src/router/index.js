@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 import AuthLayout from '../views/AuthLayout';
 import Dashboard from '../views/Dashboard';
 import Devices from '../views/Settings/Devices';
+import DocsLayout from '../views/Docs/Layout';
+
+const DocsIndex = () => import(/* webpackChunkName: "docs" */ '../views/Docs/Index.vue');
 
 Vue.use(VueRouter);
 
@@ -31,6 +34,20 @@ const routes = [
             }
         ]
     },
+
+    {
+        path: '/docs',
+        component: DocsLayout,
+        children: [
+            {
+                path: '',
+                name: 'docs',
+                component: DocsIndex,
+            }
+        ]
+    }
+
+    //
     /*{
       path: '/about',
       name: 'about',
