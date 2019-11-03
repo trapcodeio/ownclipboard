@@ -179,7 +179,7 @@
                 return this.$route.query.search
             },
 
-            postTrimmed(){
+            postTrimmed() {
                 return this.post.trim();
             }
         },
@@ -279,16 +279,16 @@
             },
             saveClip(btn) {
                 this.pasteData = this.postTrimmed;
-                this.addPasteData(() => {
+                this.addPasteData(true, () => {
                     btn.stopLoading()
                 }, () => {
                     this.post = "";
                     this.isCreating = false;
                 })
             },
-            addPasteData(any = () => false, yes = () => false) {
+            addPasteData(isPost = false, any = () => false, yes = () => false) {
                 const data = (this.pasteData || "").trim();
-                if (!this.isAdding && !this.isCreating && data.length) {
+                if (!this.isAdding && !isPost && data.length) {
 
                     this.items.unshift({
                         content: data,
