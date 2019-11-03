@@ -3,7 +3,7 @@
         <div class="container">
             <div class="navbar-brand">
                 <router-link :to="{name: 'clipboard'}" class="navbar-item">
-                    <h3 class="is-size-4"><i class="far fa-paste"></i> CloudClipBoard</h3>
+                    <h3 class="is-size-4"><i class="far fa-paste"></i> OwnClipboard</h3>
                 </router-link>
                 <div @click.prevent="toggleMenu" :class="burgerClass" data-target="authNavMenu">
                     <span></span>

@@ -8,7 +8,7 @@
             </div>
             <div v-else class="columns">
                 <div class="column is-6-tablet is-offset-3-tablet is-4-desktop is-offset-4-desktop">
-                    <h3 class="is-size-3"><i class="fa fa-paste"></i> CloudClipBoard</h3>
+                    <h3 class="is-size-3"><i class="fa fa-paste"></i> OwnClipboard</h3>
                     <hr class="m-0">
                     <form @submit="()=>false" class="mt-3">
 

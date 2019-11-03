@@ -6,7 +6,7 @@ const ngrok = false;
 const domain = ngrok || env["APP_DOMAIN"] || "localhost";
 
 module.exports = {
-    name: "CloudClipBoard",
+    name: "OwnClipboard",
     env: env["NODE_ENV"],
 
     server: {

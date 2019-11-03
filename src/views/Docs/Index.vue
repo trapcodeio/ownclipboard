@@ -1,7 +1,7 @@
 <template>
     <section>
         <p class="text-monospace">
-            <router-link :to="rl('index')"><strong>CloudClipboard</strong></router-link> provides a RESTful API that allows you to <strong class="has-text-warning">GET,
+            <router-link :to="rl('index')"><strong>OwnClipboard</strong></router-link> provides a RESTful API that allows you to <strong class="has-text-warning">GET,
             SEARCH,
             ADD OR DELETE</strong> your clips using your api key.
         </p>

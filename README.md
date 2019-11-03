@@ -1,4 +1,4 @@
-# CloudClipBoard
+# OwnClipboard
 
 ## Project setup
 ```
