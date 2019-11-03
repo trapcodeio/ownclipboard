@@ -23,24 +23,24 @@ module.exports = {
         };
 
         // Get ApiKey from query.
-        let apiKey = http.query('api_key', false);
+        let api_key = http.query('api_key', false);
 
         // If false check in body.
-        if (!apiKey) {
-            apiKey = http.body('api_key', false);
+        if (!api_key) {
+            api_key = http.body('api_key', false);
         }
 
         // if false or not string trigger error.
-        if (!apiKey) {
+        if (!api_key) {
             return error(apiKeyNotFound, 401);
         }
 
-        if (typeof apiKey !== "string" || apiKey.length !== 100) {
+        if (typeof api_key !== "string" || api_key.length !== 100) {
             return error(apiKeyNotValid, 401);
         }
 
         // Find ApiKey
-        const device = await Device.query().where({api_key: apiKey}).first();
+        const device = await Device.query().where({api_key}).first();
         if (!device) {
             return error(apiKeyNotValid, 401);
         }
@@ -53,8 +53,8 @@ module.exports = {
         const user = await User.query().where({id: device.user_id}).first();
 
         // find clip if exists
-        const clipNotFound = {type: 'clip_not_found', message: `Content not found, maybe already deleted.`};
-        const clipCodeNotFound = {type: 'clip_not_found', message: `Content code not found in request.`};
+        const clipNotFound = {type: 'clip_not_valid', message: `Clip not valid, maybe already deleted.`};
+        const clipCodeNotFound = {type: 'clip_not_found', message: `Clip not found in request.`};
 
         let clip = http.body('clip', undefined);
         if (clip) {
@@ -64,21 +64,21 @@ module.exports = {
             }).first();
 
             if (!clip) {
-                return error(clipNotFound, 422)
+                return error(clipNotFound, 404)
             }
         } else if (!clip && http.req.url.includes('delete')) {
-            return error(clipCodeNotFound, 404);
+            return error(clipCodeNotFound, 422);
         }
 
 
-        http.locals.set('api_key', apiKey);
+        http.locals.set('api_key', api_key);
         http.locals.set('api_device', device);
         http.locals.set('api_user', user);
         http.locals.set('api_clip', clip);
 
         const hits = (device.hits || 0) + 1;
         // Update Hits in background
-        Device.query().where({api_key: apiKey}).update({hits}).then(() => {
+        Device.query().where({api_key: api_key}).update({hits}).then(() => {
             // Do nothing..
         });
 

@@ -1,0 +1,7 @@
+{
+  "status": 404,
+  "error": {
+    "type": "clip_not_valid",
+    "message": "Clip not valid, maybe already deleted."
+  }
+}

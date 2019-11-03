@@ -1,16 +1,45 @@
 <template>
     <section @paste="onPaste" @keyup.ctrl="onCtrl" class="section">
         <div class="container">
-            <div class="box has-text-centered py-4 has-background-grey-darker">
-                <!--<div class="is-pulled-right">
-                    AutoPost
-                    <Toggle v-model="autoPost" :show-options="false"/>
-                </div>-->
-                <h1 class="is-size-3 is-size-1-desktop">Click + CTRL+V</h1>
-                <h5 class="my-3">OR</h5>
-                <button @click.prevent="onPaste" class="button mr-2"><i class="fa fa-paste mr-2"></i> PASTE</button>
-                <!--                <button class="button"><i class="fa fa-pencil mr-2"></i> CREATE POST</button>-->
-            </div>
+            <!--<div class="is-pulled-right">
+                AutoPost
+                <Toggle v-model="autoPost" :show-options="false"/>
+            </div>-->
+            <template v-if="isCreating">
+                <form action="#" class="mb-5">
+                    <div class="field">
+                        <label class="is-clearfix" for="">
+                            <span class="is-pulled-left mr-2">Editor</span>
+                            <span class="is-pulled-right mr-2">({{postTrimmed.length}})</span>
+                        </label>
+                        <div class="control">
+                            <textarea v-model="post" rows="5"
+                                      class="textarea is-dark has-background-dark has-text-white"
+                                      placeholder="Paste or write..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="has-text-centered">
+                        <LoadingButton :disabled="postTrimmed.length<2" :click="saveClip" class="is-success">
+                            <i class="far fa-check mr-2"></i> SAVE CLIP
+                        </LoadingButton>
+                    </div>
+                </form>
+            </template>
+            <template v-else>
+                <div class="box has-text-centered py-4 has-background-grey-darker">
+
+                    <h1 class="is-size-3 is-size-1-desktop">Click + CTRL+V</h1>
+                    <h5 class="my-3">OR</h5>
+                    <button @click.prevent="onPaste" class="button mr-2">
+                        <i class="fa fa-paste mr-2"></i> PASTE
+                    </button>
+                    <button @click.prevent="isCreating=true" class="button">
+                        <i class="fa fa-pencil mr-2"></i> CREATE
+                    </button>
+                </div>
+            </template>
+
             <div class="columns">
                 <div class="column is-12">
 
@@ -25,7 +54,8 @@
                 </div>
             </div>
             <template v-if="loaded">
-                <h6 v-if="searchQuery&&searchQuery.length" class="is-size-6 my-2">Results for search <span class="has-text-success">{{search}}</span></h6>
+                <h6 v-if="searchQuery&&searchQuery.length" class="is-size-6 my-2">Results for search <span
+                        class="has-text-success">{{search}}</span></h6>
                 <h4 v-else class="is-size-4 my-2">History</h4>
                 <template v-for="(item, index) in items">
                     <div :key="index"
@@ -42,7 +72,7 @@
                             </div>
                         </div>
                         <div>
-                            <code class="has-background-dark text-brea">
+                            <code class="has-background-dark text-break">
                                 <a v-if="item.type==='url'" target="_blank" :href="item.content"
                                    class="has-text-success">{{item.content
                                     | shorten }}</a>
@@ -123,6 +153,8 @@
                 isSearching: false,
                 searchTimeout: -1,
 
+                isCreating: true,
+
                 viewHistory: null,
                 isHovered: {},
                 autoPost: true,
@@ -131,7 +163,9 @@
                 loaded: false,
                 items: [],
                 page: 0,
-                contents: {}
+                contents: {},
+
+                post: ''
             }
         },
 
@@ -140,6 +174,10 @@
 
             searchQuery() {
                 return this.$route.query.search
+            },
+
+            postTrimmed(){
+                return this.post.trim();
             }
         },
 
@@ -219,8 +257,34 @@
                     }
                 }
             },
-            addPasteData() {
-                const data = this.pasteData || "";
+            createClip(content, jobs = {}) {
+                this.isAdding = true;
+                return this.$api.postToRoute('content.create', {
+                    content: content.trim()
+                }, {
+                    yes: ({content}) => {
+                        this.items.splice(0, 1);
+                        this.removeItem(content.code);
+                        this.items.unshift(content);
+                        if (typeof jobs.yes === "function") return jobs.yes(content);
+                    },
+                    any: () => {
+                        this.isAdding = false;
+                        if (typeof jobs.any === "function") return jobs.any();
+                    }
+                });
+            },
+            saveClip(btn) {
+                this.pasteData = this.postTrimmed;
+                this.addPasteData(() => {
+                    btn.stopLoading()
+                }, () => {
+                    this.post = "";
+                    this.isCreating = false;
+                })
+            },
+            addPasteData(any = () => false, yes = () => false) {
+                const data = (this.pasteData || "").trim();
                 if (!this.isAdding && data.length) {
 
                     this.items.unshift({
@@ -229,20 +293,10 @@
                     });
 
                     if (this.autoPost) {
-                        this.isAdding = true;
-                        return this.$api.postToRoute('content.create', {
-                            content: data.trim()
-                        }, {
-                            yes: ({content}) => {
-                                this.items.splice(0, 1);
-                                this.removeItem(content.code);
-                                this.items.unshift(content);
-                            },
-                            any: () => {
-                                this.isAdding = false;
-                            }
-                        });
+                        return this.createClip(data, {yes, any});
                     }
+                } else {
+                    if (typeof yes === "function") return any();
                 }
             },
             async onPaste() {
@@ -269,8 +323,10 @@
 </script>
 
 <style lang="scss" scoped>
-    input::placeholder {
-        color: grey;
+    input, textarea {
+        &::placeholder {
+            color: grey;
+        }
     }
 
     .box.history {

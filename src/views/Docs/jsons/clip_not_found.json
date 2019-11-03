@@ -1,0 +1,7 @@
+{
+  "status": 422,
+  "error": {
+    "type": "clip_not_found",
+    "message": "Clip not found in request."
+  }
+}

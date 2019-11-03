@@ -1,7 +1,7 @@
 <template>
     <section>
         <p class="text-monospace">
-            <strong>CloudClipboard</strong> provides a RESTful API that allows you to <strong class="has-text-warning">GET,
+            <router-link :to="rl('index')"><strong>CloudClipboard</strong></router-link> provides a RESTful API that allows you to <strong class="has-text-warning">GET,
             SEARCH,
             ADD OR DELETE</strong> your clips using your api key.
         </p>
@@ -36,7 +36,7 @@
         <p class="mt-3">Presence of api_key but not <span>connected</span> will return error:</p>
         <div :class="jsonBox">
             <vue-json-pretty
-                    :data="response.apiKeyNotValid">
+                    :data="response.apiKeyNotConnected">
             </vue-json-pretty>
         </div>
 
@@ -87,7 +87,6 @@
 
         <!-- ADD CLIP -->
         <h1 class="is-size-4 has-text-info mt-3 mb-2">Add Clip</h1>
-        <p class="mt-3"><span>POST CLIP</span> Example request.</p>
         <pre :class="jsonBox"><code class="language-http" v-html="requests.addExample"
                                     style="white-space: pre-wrap"></code></pre>
         <p class="mt-3"><strong>OK</strong> Response</p>
@@ -96,11 +95,47 @@
                     :data="response.apiAdd">
             </vue-json-pretty>
         </div>
+        <p><strong>exists</strong> tells you if this content exists before, if false it means this is a new document</p>
 
         <p class="mt-3"><strong class="has-text-danger">ERROR</strong> Response</p>
         <div :class="jsonBox">
             <vue-json-pretty
                     :data="response.apiAddError">
+            </vue-json-pretty>
+        </div>
+
+
+        <!-- DELETE CLIP -->
+        <h1 class="is-size-4 has-text-info mt-3 mb-2">Delete Clip</h1>
+        <p class="mt-3">Example request.</p>
+        <pre :class="jsonBox"><code class="language-http" v-html="requests.deleteExample"
+                                    style="white-space: pre-wrap"></code></pre>
+        <p class="text-monospace">
+            <span class="has-text-success">clip</span> in data is the <strong
+                class="ignore">code</strong> (string:20) of the clip you want to delete. clip code can be found in every
+            clip item returned when getting all clips.
+            <br><br>
+            If clip is found in the body of your request it will be validated first and can return any of the errors below.
+        </p>
+
+        <p class="mt-3"><span>Absence</span> of clip in request will return error</p>
+        <div :class="jsonBox">
+            <vue-json-pretty
+                    :data="response.clipNotFound">
+            </vue-json-pretty>
+        </div>
+
+        <p class="mt-3">clip <span class="has-text-success">present</span> but invalid or not found in database will return error</p>
+        <div :class="jsonBox">
+            <vue-json-pretty
+                    :data="response.clipNotValid">
+            </vue-json-pretty>
+        </div>
+
+        <p class="mt-3">when delete is <span class="has-text-success">successful</span></p>
+        <div :class="jsonBox">
+            <vue-json-pretty
+                    :data="response.clipDeleted">
             </vue-json-pretty>
         </div>
 
@@ -114,12 +149,15 @@
     import VueJsonPretty from 'vue-json-pretty';
     import apiKeyNotFound from './jsons/api_key_not_found';
     import apiKeyNotValid from './jsons/api_key_not_valid';
-    import apiKeyNotConnected from './jsons/api_key_not_valid';
+    import apiKeyNotConnected from './jsons/api_key_not_connected';
     import apiKeyConnected from './jsons/connect';
     import apiAll from './jsons/all';
     import apiSearch from './jsons/search';
     import apiAdd from './jsons/add';
     import apiAddError from './jsons/add_error';
+    import clipNotValid from './jsons/clip_not_valid';
+    import clipNotFound from './jsons/clip_not_found';
+    import clipDeleted from './jsons/deleted';
 
     const requests = {
         getExample: `GET /api/{endpoint}?api_key={api_key}`,
@@ -128,6 +166,7 @@
         getClipExample: `GET /api/all?api_key={api_key}`,
         searchClipExample: `GET /api/all?api_key={api_key}&search=clip`,
         addExample: `POST /api/add\ndata: { api_key, content }`,
+        deleteExample: `DELETE /api/delete\ndata: { api_key, clip }`,
     };
 
     export default {
@@ -145,7 +184,10 @@
                     apiAll,
                     apiSearch,
                     apiAdd,
-                    apiAddError
+                    apiAddError,
+                    clipNotFound,
+                    clipNotValid,
+                    clipDeleted
                 },
 
                 jsonBox: "box has-background-black-ter has-text-white p-3 mt-2"
@@ -159,11 +201,11 @@
 
 
     p, .text-monospace {
-        span {
+        span:not(.ignore) {
             color: #f89406;
         }
 
-        strong {
+        strong:not(.ignore) {
             color: #62c462;
         }
     }

@@ -1,6 +1,5 @@
 // SweetAlert
 import Swal from "sweetalert2";
-import '../node_modules/@sweetalert2/themes/dark/dark.min.css';
 window['Swal'] = Swal;
 
 // Css

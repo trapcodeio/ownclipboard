@@ -1,0 +1,7 @@
+{
+  "status": 200,
+  "data": {
+    "deleted": true,
+    "code": "DELETED_CLIP_CODE"
+  }
+}
