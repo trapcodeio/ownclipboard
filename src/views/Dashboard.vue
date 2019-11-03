@@ -156,7 +156,7 @@
                 isSearching: false,
                 searchTimeout: -1,
 
-                isCreating: true,
+                isCreating: false,
 
                 viewHistory: null,
                 isHovered: {},
@@ -288,7 +288,7 @@
             },
             addPasteData(any = () => false, yes = () => false) {
                 const data = (this.pasteData || "").trim();
-                if (!this.isAdding && data.length) {
+                if (!this.isAdding && !this.isCreating && data.length) {
 
                     this.items.unshift({
                         content: data,
