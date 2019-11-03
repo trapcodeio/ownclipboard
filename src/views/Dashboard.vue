@@ -20,9 +20,12 @@
                     </div>
 
                     <div class="has-text-centered">
-                        <LoadingButton :disabled="postTrimmed.length<2" :click="saveClip" class="is-success">
+                        <LoadingButton :disabled="postTrimmed.length<2" :click="saveClip" class="is-success mr-2">
                             <i class="far fa-check mr-2"></i> SAVE CLIP
                         </LoadingButton>
+                        <button @click.prevent="isCreating=false" class="button">
+                            CANCEL
+                        </button>
                     </div>
                 </form>
             </template>
