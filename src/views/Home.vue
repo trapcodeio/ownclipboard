@@ -7,7 +7,7 @@
                 <h4 class="is-size-4">Logging you in...</h4>
             </div>
             <div v-else class="columns">
-                <div class="column is-6-tablet is-offset-3-tablet is-4-desktop is-offset-4-desktop">
+                <div :class="css.col4">
                     <h3 class="is-size-3"><i class="fa fa-paste"></i> OwnClipboard</h3>
                     <hr class="m-0">
                     <form @submit="()=>false" class="mt-3">
@@ -104,7 +104,7 @@
         },
 
         computed: {
-            ...mapState(['logged']),
+            ...mapState(['logged', 'css']),
             hasUsername() {
                 const username = this.$route.query.username;
                 return !!(username && username.length);
