@@ -11,6 +11,7 @@ module.exports = () => {
         Route.post('@register');
         Route.post('@login');
         Route.post('@logout');
+        Route.post('@change_password');
     }).controller('Auth', true).as('auth');
 
     // Route.path('')

@@ -883,7 +883,7 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.0.0.tgz#23c0df14f6a88077f5f986c0d167ec03c3d5537c"
   integrity sha512-Phlt0plgpIIBOGTT/ehfFnbNlfsDEiqmzE2KRXoX1bLIlir4X/MR+zSyBEkL05ffWgnRSf/DXv+WrUAVr93/ow==
 
-bluebird@^3.1.1, bluebird@^3.5.5, bluebird@^3.7.0:
+bluebird@^3.1.1, bluebird@^3.5.5, bluebird@^3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.1.tgz#df70e302b471d7473489acf26a93d63b53f874de"
   integrity sha512-DdmyoGCleJnkbp3nkbxTLJ18rjDsE4yCggEwKNXkeV123sPNfOCYeDoeuOY+F2FrSjO1YXcTU+dsy96KMy+gcg==
@@ -3298,10 +3298,10 @@ handle-thing@^2.0.0:
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-2.0.0.tgz#0e039695ff50c93fc288557d696f3c1dc6776754"
   integrity sha512-d4sze1JNC454Wdo2fkuyzCr6aHcbL6PGGuFAz0Li/NcOm1tCHGnWDRmJP85dh9IhQErTc2svWFEX5xHIOo//kQ==
 
-handlebars@4.4.5:
-  version "4.4.5"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.4.5.tgz#1b1f94f9bfe7379adda86a8b73fb570265a0dddd"
-  integrity sha512-0Ce31oWVB7YidkaTq33ZxEbN+UDxMMgThvCe8ptgQViymL5DPis9uLdTA13MiRPhgvqyxIegugrP97iK3JeBHg==
+handlebars@4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.5.1.tgz#8a01c382c180272260d07f2d1aa3ae745715c7ba"
+  integrity sha512-C29UoFzHe9yM61lOsIlCE5/mQVGrnIOrOq7maQl76L7tYPCgC1og0Ajt6uWnX4ZTxBPnjw+CUvawphwCfJgUnA==
   dependencies:
     neo-async "^2.6.0"
     optimist "^0.6.1"
@@ -4295,12 +4295,12 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
-knex@^0.19.5:
-  version "0.19.5"
-  resolved "https://registry.yarnpkg.com/knex/-/knex-0.19.5.tgz#3597ebecf88a5942f18c3e6d91af53bda59eeb5d"
-  integrity sha512-Hy258avCVircQq+oj3WBqPzl8jDIte438Qlq+8pt1i/TyLYVA4zPh2uKc7Bx0t+qOpa6D42HJ2jjtl2vagzilw==
+knex@0.20.1:
+  version "0.20.1"
+  resolved "https://registry.yarnpkg.com/knex/-/knex-0.20.1.tgz#e2765492a810b3ae6b4c1b49a7bc4719c83f5c12"
+  integrity sha512-vQvlzsCw4kkqWLmUFVhPX8H4KrfSLVSVGbMJVo4fhJ8N5fN+CH0LzgAmQBh0iwbJY7x8Sk3T4pEjnUlUKjnCPw==
   dependencies:
-    bluebird "^3.7.0"
+    bluebird "^3.7.1"
     colorette "1.1.0"
     commander "^3.0.2"
     debug "4.1.1"
@@ -5109,10 +5109,10 @@ object-assign@^4, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
 
-object-collection@^1.0.15:
-  version "1.0.16"
-  resolved "https://registry.yarnpkg.com/object-collection/-/object-collection-1.0.16.tgz#165088248a2fee1f0068fb0868514b1b7bca9a96"
-  integrity sha512-biYrnHybI5CSIwRrLF3X5VCKZ4ua2OMX9DZl03ExFQvV/i1kaaylFvZ97cCwqvHkoKLUz1sQ/Cjd/yhMkDPwRA==
+object-collection@^1.0.19:
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/object-collection/-/object-collection-1.0.19.tgz#e7c37d63d4f1c30fbb0dd0489438821449de2ae4"
+  integrity sha512-BN55kK83L/DIKpKIBGgE4pzIyXDF/XSs51E5TETp5BrwhEUwoYZAk33TllEeqHjrXdhYmwjyx1FHcWUXNvhHwg==
   dependencies:
     lodash "^4.17.15"
 
@@ -8028,10 +8028,10 @@ x-xss-protection@1.3.0:
   resolved "https://registry.yarnpkg.com/x-xss-protection/-/x-xss-protection-1.3.0.tgz#3e3a8dd638da80421b0e9fff11a2dbe168f6d52c"
   integrity sha512-kpyBI9TlVipZO4diReZMAHWtS0MMa/7Kgx8hwG/EuZLiA6sg4Ah/4TRdASHhRRN3boobzcYgFRUFSgHRge6Qhg==
 
-xpresser@^0.1.61:
-  version "0.1.61"
-  resolved "https://registry.yarnpkg.com/xpresser/-/xpresser-0.1.61.tgz#d97121013939cabb8f4d5f2c86771ba148d855c5"
-  integrity sha512-pwj0WVJToT7EY/KFUhwMTahT3HjE6N4SwyEECddJlKmuHW4c2tWGf589eE0wjxe6x9kmELYodrZnjxJzSrJzDA==
+xpresser@^0.1.64:
+  version "0.1.64"
+  resolved "https://registry.yarnpkg.com/xpresser/-/xpresser-0.1.64.tgz#5c6af651f36fa30266768400f5d5957d6f631e81"
+  integrity sha512-nQDupMQ22gE0rQmooc/YJVVZ6aKlgTFuYsw2zGK0flpd/1v4iMq1w7IkXPzsP1azTk5Bk81NGwBcaC+vsMjqOg==
   dependencies:
     "@xpresser/router" "^1.0.3"
     body-parser "^1.19.0"
@@ -8045,12 +8045,12 @@ xpresser@^0.1.61:
     express-flash "^0.0.2"
     express-session "1.17.0"
     fs-extra "^8.1.0"
-    handlebars "4.4.5"
+    handlebars "4.5.1"
     helmet "3.21.2"
-    knex "^0.19.5"
+    knex "0.20.1"
     mkdirp "^0.5.1"
     moment "^2.24.0"
-    object-collection "^1.0.15"
+    object-collection "^1.0.19"
     object-validator-pro "^1.0.19"
     objection "^1.6.9"
     pluralize "^8.0.0"

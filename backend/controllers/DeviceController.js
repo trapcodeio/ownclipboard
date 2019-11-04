@@ -26,7 +26,7 @@ const DeviceController = $.handler({
 
         // if device then add to boot return values
         if (device) {
-            device = await Device.query().where({user_id: user.id, code: device}).first()
+            device = await Device.query().where({user_id: user.id, code: device}).first();
             if (!device) {
                 return error(`Device not found, maybe already deleted.`);
             }
@@ -50,6 +50,11 @@ const DeviceController = $.handler({
         const devices = await Device.query().where({user_id})
             .orderBy('id', 'desc')
             .paginate(page, 20);
+
+        for (const device of devices.data) {
+            device.$pick(Device.jsPick);
+        }
+
 
         // Say to api.
         return http.toApi({devices});

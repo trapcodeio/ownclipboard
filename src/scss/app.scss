@@ -17,3 +17,14 @@
 ::-webkit-scrollbar-thumb:active {
   background-color: lighten($dark, 3%);
 }
+
+
+input {
+  background-color: $black-ter !important;
+  border: $grey-darker 1px solid !important;
+  color: $white !important;
+
+  &::placeholder {
+    color: $grey !important;
+  }
+}

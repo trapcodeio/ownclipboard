@@ -3,7 +3,7 @@
         <div class="container">
             <div class="navbar-brand">
                 <router-link :to="{name: 'clipboard'}" class="navbar-item">
-                    <h3 class="is-size-4"><i class="far fa-paste"></i> OwnClipboard</h3>
+                    <h3 class="is-size-4"><i class="fad fa-paste"></i> OwnClipboard</h3>
                 </router-link>
                 <div @click.prevent="toggleMenu" :class="burgerClass" data-target="authNavMenu">
                     <span></span>
@@ -15,15 +15,18 @@
             <div id="authNavMenu" :class="mainClass">
                 <div class="navbar-end mr-5 has-icon-left">
                     <router-link :to="{name: 'clipboard'}" class="navbar-item">
-                        <i class="far fa-clipboard"></i> History
+                        <i class="fad fa-clipboard"></i> History
                     </router-link>
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
-                            <i class="fa fa-user"></i> Account
+                            <i class="fad fa-user"></i> Account
                         </a>
                         <div class="navbar-dropdown is-boxed">
                             <router-link class="navbar-item" :to="rl('devices')">
-                                <i class="fa fa-mobile"></i> Devices
+                                <i class="fad fa-mobile"></i> Devices
+                            </router-link>
+                            <router-link class="navbar-item" :to="rl('password')">
+                                <i class="fad fa-key"></i> Change Password
                             </router-link>
                             <!--<a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
                                 <i class="far fa-cog"></i> Settings

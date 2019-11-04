@@ -15,7 +15,7 @@ const AuthController = $.handler({
     // Controller Name
     name: "AuthController",
     // Controller Middlewares
-    middlewares: {},
+    // middleware: {'@change_password': 'dyccyw'},
     // Controller Default Service Error Handler.
     e: $$.defaultErrorHandler,
 
@@ -34,9 +34,16 @@ const AuthController = $.handler({
 
     auth: (http) => {
         const logged = http.isLogged();
+        const user = http.authUser();
+
+        if(user){
+            user.$pick([
+                'username',
+            ])
+        }
 
         return http.toApi({
-            user: logged ? http.authUser() : false,
+            user: logged ? user : false,
             logged,
         })
     },
@@ -92,6 +99,34 @@ const AuthController = $.handler({
     logout: (http) => {
         http.logout();
         return http.toApi({logged: http.isLogged()});
+    },
+
+    change_password: (http, boot, error) => {
+        const needed = ['current', 'password'];
+        const body = http.body();
+        const user = http.authUser();
+
+        if (!user) {
+            return error(`You are not logged!`);
+        }
+
+        if (!body.removeNull(true).exists(needed)) {
+            return error(`Fields missing.`);
+        }
+
+        const {current, password} = body.pick(needed);
+
+        if (!bcrypt.compareSync(current, user.password)) {
+            return error('Old password provided is not correct!')
+        }
+
+        user.$query().updateAndFetch({
+            password: bcrypt.hashSync(password, 10)
+        });
+
+        http.logout();
+
+        return http.sayToApi(`Password changed successfully, please re-login.`);
     }
 });
 

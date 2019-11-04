@@ -5,6 +5,7 @@
   "api.delete": "/api/delete",
   "api.not_found": "/api/",
   "auth": "/secure/auth",
+  "auth.change_password": "/secure/auth/change_password",
   "auth.check_username": "/secure/auth/check_username",
   "auth.login": "/secure/auth/login",
   "auth.logout": "/secure/auth/logout",

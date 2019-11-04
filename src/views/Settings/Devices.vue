@@ -5,8 +5,9 @@
                 <i class="fad fa-mobile fa-4x"></i>
                 <h3 class="is-size-3 my-2">Devices</h3>
             </div>
-            <div class="has-text-right">
-                <button @click.prevent="addingDevice=true" class="button is-success"><i class="fa fa-plus mr-2"></i> Add
+            <div class="is-clearfix">
+                <router-link class="button" :to="rl('docs')">Api Documentation</router-link>
+                <button @click.prevent="addingDevice=true" class="button is-success is-pulled-right"><i class="fa fa-plus mr-2"></i> Add
                     Device
                 </button>
             </div>
@@ -19,13 +20,14 @@
                     </h6>
                     <template v-if="devices.length">
                         <div v-for="(item, index) in devices" class="box mt-1" :key="index">
+                            <span title="hits" class="has-text-success is-pulled-right"><small class="has-text-grey-light">hits:</small> {{item.hits}}</span>
                             <span class="has-text-grey-light">NAME: </span> {{item.name}},
                             <br>
                             <span class="has-text-grey-light">API KEY: </span> <code v-clipboard:copy="item.api_key"
                                                                                      v-clipboard:success="onCopy"
                                                                                      class="has-text-warning text-break text-monospace is-clickable">{{item.api_key}}</code>
                             <br>
-                            <span class="has-text-grey-light">Used: </span>
+                            <span class="has-text-grey-light">Connected: </span>
                             <i v-if="item.used" class="far fa-check-circle has-text-success"></i>
                             <i v-else class="far fa-minus-circle"></i>
 

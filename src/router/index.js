@@ -3,9 +3,10 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import AuthLayout from '../views/AuthLayout';
 import Dashboard from '../views/Dashboard';
-import Devices from '../views/Settings/Devices';
 import DocsLayout from '../views/Docs/Layout';
 
+const Devices = () => import(/* webpackChunkName: "logged" */ '../views/Settings/Devices');
+const Password = () => import(/* webpackChunkName: "logged" */ '../views/Settings/Password');
 const DocsIndex = () => import(/* webpackChunkName: "docs" */ '../views/Docs/Index.vue');
 
 Vue.use(VueRouter);
@@ -31,6 +32,11 @@ const routes = [
                 path: 'devices',
                 name: 'devices',
                 component: Devices
+            },
+            {
+                path: 'password',
+                name: 'password',
+                component: Password
             }
         ]
     },

@@ -103,7 +103,18 @@
             }
         },
 
-        computed: mapState(['logged']),
+        computed: {
+            ...mapState(['logged']),
+            hasUsername() {
+                const username = this.$route.query.username;
+                return !!(username && username.length);
+            }
+        },
+
+        mounted() {
+            if (this.hasUsername)
+                this.username = this.$route.query.username;
+        },
 
         methods: {
             resetUsername() {
@@ -161,7 +172,7 @@
                         this.resetUsername();
                         return this.$router.push({name: 'clipboard'})
                     },
-                    any: () =>  btn.stopLoading()
+                    any: () => btn.stopLoading()
                 });
             }
         }

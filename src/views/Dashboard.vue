@@ -1,5 +1,5 @@
 <template>
-    <section @paste="onPaste" @keyup.ctrl="onCtrl" class="section">
+    <section @paste="onPaste" class="section">
         <div class="container">
             <!--<div class="is-pulled-right">
                 AutoPost
@@ -59,7 +59,8 @@
             <template v-if="loaded">
                 <h6 v-if="searchQuery&&searchQuery.length" class="is-size-6 my-2">Results for search <span
                         class="has-text-success">{{search}}</span></h6>
-                <h4 v-else class="is-size-4 my-2">History</h4>
+                <h4 v-else class="is-size-5 my-2">History <small class="is-size-6 is-pulled-right">({{seen}} of
+                    {{contents.total}})</small></h4>
                 <template v-for="(item, index) in items">
                     <div :key="index"
                          class="box has-background-dark py-3 history">
@@ -181,6 +182,11 @@
 
             postTrimmed() {
                 return this.post.trim();
+            },
+
+            seen() {
+                const {page, perPage, lastPage, total} = this.contents;
+                return (lastPage === page) ? total : perPage * page;
             }
         },
 
@@ -279,16 +285,16 @@
             },
             saveClip(btn) {
                 this.pasteData = this.postTrimmed;
-                this.addPasteData(true, () => {
+                this.addPasteData(() => {
                     btn.stopLoading()
                 }, () => {
                     this.post = "";
                     this.isCreating = false;
                 })
             },
-            addPasteData(isPost = false, any = () => false, yes = () => false) {
+            addPasteData(any = () => false, yes = () => false) {
                 const data = (this.pasteData || "").trim();
-                if (!this.isAdding && !isPost && data.length) {
+                if (!this.isAdding && data.length) {
 
                     this.items.unshift({
                         content: data,
@@ -302,7 +308,9 @@
                     if (typeof yes === "function") return any();
                 }
             },
+
             async onPaste() {
+                if (this.isCreating) return false;
                 this.pasteData = await window.navigator.clipboard.readText() || "";
                 this.addPasteData();
                 return true;
