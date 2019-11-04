@@ -80,7 +80,7 @@
                                 <a v-if="item.type==='url'" target="_blank" :href="item.content"
                                    class="has-text-success">{{item.content
                                     | shorten }}</a>
-                                <span v-else>{{item.content | shorten }}</span>
+                                <span v-else @click.prevent="viewHistory=item">{{item.content | shorten }}</span>
                             </code>
                         </div>
                         <div class="is-clearfix is-size-6 mt-2 history-actions">
@@ -90,10 +90,10 @@
                                         class="fad fa-copy"></i> <small>copy</small></a>
                             </div>
                             <div class="is-pulled-right">
-                                <template v-if="item.content.length>200">
+<!--                                <template v-if="item.content.length>200">-->
                                     <a @click.prevent="viewHistory=item" class="has-text-info mr-2"><i
                                             class="fad fa-eye"></i> <small>view</small></a> -
-                                </template>
+<!--                                </template>-->
                                 <a @click.prevent="deleteItem(index)" class="has-text-danger ml-2"><i
                                         class="fad fa-trash"></i></a>
                             </div>
@@ -103,11 +103,11 @@
                 <Pagination v-model="page" :data="contents"/>
             </template>
             <PreLoader class="mt-5" v-else/>
-            <div v-if="viewHistory!==null" class="modal is-active">
+            <div v-if="viewHistory!==null" class="modal is-active text-monospace text-break">
                 <div class="modal-background"></div>
                 <div class="modal-content">
-                    <div class="box has-background-dark">
-                        <div v-html="viewHistory.html_formatted ||viewHistory.content" :readonly="true"></div>
+                    <div class="box has-background-dark has-text-white">
+                        <div  v-html="viewHistory.html_formatted ||viewHistory.content" :readonly="true"></div>
                     </div>
                     <div class="is-clearfix is-size-5">
                         <div class="is-pulled-left">

@@ -17,7 +17,7 @@ module.exports = {
     },
     database: {
         startOnBoot: true,
-        config: {
+        /*config: {
             client: env["DATABASE_CLIENT"],
             connection: {
                 host: env["DATABASE_HOST"],
@@ -29,7 +29,7 @@ module.exports = {
                     ca: fs.readFileSync(Base+'/db_cert.crt').toString()
                 }
             },
-        }
+        }*/
     },
     paths: {
         base: Base,
