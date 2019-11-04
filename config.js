@@ -1,4 +1,5 @@
-const Base = __dirname;
+const Base = __dirname
+const fs = require("fs");
 const env = require("xpresser/env")(Base);
 const isDev = env["NODE_ENV"] === "development";
 // const ngrok = "clip.ngrok.io";
@@ -15,7 +16,20 @@ module.exports = {
         includePortInUrl: !ngrok
     },
     database: {
-      startOnBoot: true
+        startOnBoot: true,
+        config: {
+            client: env["DATABASE_CLIENT"],
+            connection: {
+                host: env["DATABASE_HOST"],
+                port: env["DATABASE_PORT"],
+                user: env["DATABASE_USER"],
+                password: env["DATABASE_PASSWORD"],
+                database: env["DATABASE_NAME"],
+                ssl: {
+                    ca: fs.readFileSync(Base+'/db_cert.crt').toString()
+                }
+            },
+        }
     },
     paths: {
         base: Base,

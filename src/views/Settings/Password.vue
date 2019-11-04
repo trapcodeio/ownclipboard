@@ -52,9 +52,9 @@
         data() {
             return {
                 form: {
-                    current: '12345',
-                    password: '123456',
-                    confirm: '123456'
+                    current: '',
+                    password: '',
+                    confirm: ''
                 }
             }
         },

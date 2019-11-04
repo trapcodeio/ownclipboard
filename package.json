@@ -12,6 +12,7 @@
     "@xpresser/auth": "^0.1.1",
     "bcryptjs": "^2.4.3",
     "moment": "^2.24.0",
+    "mysql": "^2.17.1",
     "sweetalert2": "^8.18.6",
     "vue": "^2.6.10",
     "vue-clipboard2": "^0.3.1",
