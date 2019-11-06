@@ -8,7 +8,10 @@
             </div>
             <div v-else class="columns">
                 <div :class="css.col4">
-                    <h3 class="is-size-3"><i class="fa fa-paste"></i> OwnClipboard</h3>
+                    <div class="has-text-centered">
+                        <img src="/logo.svg" alt="" class="mr-1" width="100">
+                        <h3 class="is-size-3">OwnClipboard</h3>
+                    </div>
                     <hr class="m-0">
                     <form @submit="()=>false" class="mt-3">
 
@@ -25,10 +28,10 @@
                                 <div class="field">
                                     <div class="control">
                                         <input v-model="login.password" type="password" placeholder="password"
-                                               class="input">
+                                               class="input is-medium">
                                     </div>
                                 </div>
-                                <LoadingButton :click="loginUser" class="is-success is-fullwidth">LOGIN
+                                <LoadingButton :click="loginUser" class="is-success is-fullwidth is-medium">LOGIN
                                 </LoadingButton>
                             </template>
                             <template v-else>
@@ -36,13 +39,13 @@
                                     <label class="label">Password</label>
                                     <div class="control">
                                         <input v-model="register.password" type="password" placeholder="password"
-                                               class="input">
+                                               class="input is-medium">
                                     </div>
                                     <p class="help">
                                         Password to access your account with. <br> (Min: 4 characters)
                                     </p>
                                 </div>
-                                <LoadingButton :click="registerUser" class="is-warning is-fullwidth">
+                                <LoadingButton :click="registerUser" class="is-warning is-fullwidth is-medium">
                                     CREATE ACCOUNT
                                 </LoadingButton>
                             </template>
@@ -51,10 +54,10 @@
                         <template v-else>
                             <div class="field">
                                 <div class="control">
-                                    <input v-model="username" type="text" placeholder="username" class="input">
+                                    <input v-model="username" type="text" placeholder="username" class="input is-medium">
                                 </div>
                             </div>
-                            <LoadingButton :click="checkUsername" class="is-primary is-fullwidth">CHECK
+                            <LoadingButton :click="checkUsername" class="is-primary is-fullwidth is-medium">CHECK
                                 USERNAME
                             </LoadingButton>
                         </template>
@@ -95,11 +98,7 @@
 
         watch: {
             logged() {
-                if (this.logged) {
-                    setTimeout(() => {
-                        return this.$router.push({name: 'clipboard'});
-                    }, 1000);
-                }
+                this.redirectIfLogged();
             }
         },
 
@@ -114,6 +113,8 @@
         mounted() {
             if (this.hasUsername)
                 this.username = this.$route.query.username;
+
+            this.redirectIfLogged();
         },
 
         methods: {
@@ -174,6 +175,13 @@
                     },
                     any: () => btn.stopLoading()
                 });
+            },
+            redirectIfLogged() {
+                if (this.logged) {
+                    setTimeout(() => {
+                        return this.$router.push({name: 'clipboard'});
+                    }, 1000);
+                }
             }
         }
     }

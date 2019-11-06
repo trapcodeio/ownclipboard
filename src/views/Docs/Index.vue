@@ -1,7 +1,8 @@
 <template>
     <section>
         <p class="text-monospace">
-            <router-link :to="rl('index')"><strong>OwnClipboard</strong></router-link> provides a RESTful API that allows you to <strong class="has-text-warning">GET,
+            <router-link :to="rl('index')"><strong>OwnClipboard</strong></router-link>
+            provides a RESTful API that allows you to <strong class="has-text-warning">GET,
             SEARCH,
             ADD OR DELETE</strong> your clips using your api key.
         </p>
@@ -10,6 +11,9 @@
             All api routes are available @ "yourdomain.com<strong>/api/{endpoint}</strong>", To access this route your
             Api Key must
             be present either as a query or in the body of your request.
+            <br><br>
+            You can generate an <strong>api key</strong> in
+            the <router-link :to="rl('devices')"><strong class="ignore">Devices</strong></router-link> page when logged in. Every device created has its own <strong>unique api keys</strong>.
         </p>
         <p class="mt-3"><span>GET</span> Example request.</p>
         <pre :class="jsonBox"><code class="language-http" v-html="requests.getExample"
@@ -115,7 +119,8 @@
                 class="ignore">code</strong> (string:20) of the clip you want to delete. clip code can be found in every
             clip item returned when getting all clips.
             <br><br>
-            If clip is found in the body of your request it will be validated first and can return any of the errors below.
+            If clip is found in the body of your request it will be validated first and can return any of the errors
+            below.
         </p>
 
         <p class="mt-3"><span>Absence</span> of clip in request will return error</p>
@@ -125,7 +130,8 @@
             </vue-json-pretty>
         </div>
 
-        <p class="mt-3">clip <span class="has-text-success">present</span> but invalid or not found in database will return error</p>
+        <p class="mt-3">clip <span class="has-text-success">present</span> but invalid or not found in database will
+            return error</p>
         <div :class="jsonBox">
             <vue-json-pretty
                     :data="response.clipNotValid">
@@ -161,12 +167,12 @@
 
     const requests = {
         getExample: `GET /api/{endpoint}?api_key={api_key}`,
-        postExample: `POST /api/{endpoint}\ndata: { api_key, ...others }`,
-        connectExample: `POST /api/connect\ndata: { api_key, device_id? }`,
+        postExample: `POST /api/{endpoint}\nbody: { api_key, ...others }`,
+        connectExample: `POST /api/connect\nbody: { api_key, device_id? }`,
         getClipExample: `GET /api/all?api_key={api_key}`,
         searchClipExample: `GET /api/all?api_key={api_key}&search=clip`,
-        addExample: `POST /api/add\ndata: { api_key, content }`,
-        deleteExample: `DELETE /api/delete\ndata: { api_key, clip }`,
+        addExample: `POST /api/add\nbody: { api_key, content }`,
+        deleteExample: `DELETE /api/delete\nbody: { api_key, clip }`,
     };
 
     export default {

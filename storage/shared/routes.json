@@ -11,6 +11,7 @@
   "auth.logout": "/secure/auth/logout",
   "auth.register": "/secure/auth/register",
   "content": "/secure/logged/content",
+  "content.clear": "/secure/logged/content/clear",
   "content.create": "/secure/logged/content/create",
   "content.delete": "/secure/logged/content/_??_/delete",
   "devices": "/secure/logged/devices",

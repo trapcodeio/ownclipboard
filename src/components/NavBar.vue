@@ -3,7 +3,7 @@
         <div class="container">
             <div class="navbar-brand">
                 <router-link :to="{name: 'clipboard'}" class="navbar-item">
-                    <h3 class="is-size-4"><i class="fad fa-paste"></i> OwnClipboard</h3>
+                    <img src="/icons/android-icon-72x72.png" alt="" class="mr-1"><h4 class="is-size-4">OwnClipboard</h4>
                 </router-link>
                 <div @click.prevent="toggleMenu" :class="burgerClass" data-target="authNavMenu">
                     <span></span>

@@ -1,13 +1,17 @@
 {
-  "development": {
+  "dev": {
     "main": "server.js",
-    "server": "nodemon",
-    "console": "node"
+    "start_cron": "node",
+    "start_server": "nodemon",
+    "start_console": "node"
   },
-  "production": {
+  "prod": {
     "main": "server.js",
-    "server": "forever start",
-    "console": "node"
+    "start_cron": "pm2 start",
+    "stop_cron": "pm2 stop",
+    "start_server": "pm2 start",
+    "stop_server": "pm2 stop",
+    "start_console": "node"
   },
-  "jobsPath": "jobs"
+  "jobs_path": "backend/jobs"
 }

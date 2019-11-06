@@ -7,6 +7,7 @@ const $ = xpresser(config);
 // Check if dist folder exists.
 const distFolderExistsOrError = (next) => {
     const distFolder = $.path.base('dist');
+
     if (!$.file.isDirectory(distFolder)) {
         return $.logErrorAndExit(`Dist folder not found: ${distFolder}, run 'yarn build' first!`)
     }

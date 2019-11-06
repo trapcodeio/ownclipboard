@@ -9,8 +9,8 @@ module.exports = () => {
 
         Route.get('=all');
         Route.post('@create');
-        Route.delete(':content/delete','delete')
-
+        Route.delete(':content/delete','delete');
+        Route.delete('@clear');
 
     }).controller('Content', true).as('content');
 

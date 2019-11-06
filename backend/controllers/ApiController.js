@@ -76,9 +76,7 @@ const ApiController = $.handler({
         return $$.toApi(http, {search, clips});
     },
 
-    add: {
-        'content.add': 'api'
-    },
+    add: {'content.add': 'api'},
 
     delete: async (http, {clip}) => {
         const code = clip.code;

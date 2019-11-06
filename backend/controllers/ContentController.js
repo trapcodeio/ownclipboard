@@ -63,6 +63,11 @@ const ContentController = $.handler({
     delete: async (http, {content}) => {
         await content.$query().delete();
         return http.toApi({});
+    },
+
+    clear: async (http, {user}) => {
+        const rows = await Content.query().where({user_id: user.id}).delete();
+        return http.sayToApi(`${rows} clips deleted successfully.`);
     }
 });
 

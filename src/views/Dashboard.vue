@@ -59,8 +59,9 @@
             <template v-if="loaded">
                 <h6 v-if="searchQuery&&searchQuery.length" class="is-size-6 my-2">Results for search <span
                         class="has-text-success">{{search}}</span></h6>
-                <h4 v-else class="is-size-5 my-2">History <small class="is-size-6 is-pulled-right">({{seen}} of
-                    {{contents.total}})</small></h4>
+                <h4 v-else class="is-size-5 my-2">
+                    History <small class="is-size-6 is-pulled-right">({{seen}} of {{contents.total}})</small>
+                </h4>
                 <template v-for="(item, index) in items">
                     <div :key="index"
                          class="box has-background-dark py-3 history">
@@ -90,10 +91,10 @@
                                         class="fad fa-copy"></i> <small>copy</small></a>
                             </div>
                             <div class="is-pulled-right">
-<!--                                <template v-if="item.content.length>200">-->
-                                    <a @click.prevent="viewHistory=item" class="has-text-info mr-2"><i
-                                            class="fad fa-eye"></i> <small>view</small></a> -
-<!--                                </template>-->
+                                <!--                                <template v-if="item.content.length>200">-->
+                                <a @click.prevent="viewHistory=item" class="has-text-info mr-2"><i
+                                        class="fad fa-eye"></i> <small>view</small></a> -
+                                <!--                                </template>-->
                                 <a @click.prevent="deleteItem(index)" class="has-text-danger ml-2"><i
                                         class="fad fa-trash"></i></a>
                             </div>
@@ -103,11 +104,29 @@
                 <Pagination v-model="page" :data="contents"/>
             </template>
             <PreLoader class="mt-5" v-else/>
+
+            <div v-if="items.length" class="has-text-centered mt-3">
+                <button @click.prevent="isClearingHistory=true" class="button is-dark mt-5 is-small text-uppercase"><i
+                        class="fa fa-trash mr-2"></i> Clear History
+                </button>
+            </div>
+
+            <div v-if="isClearingHistory" class="modal is-active">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <h3 class="is-size-3">Are you sure you want to clear your history?</h3>
+                    <div class="has-text-centered mt-3">
+                        <LoadingButton :click="clearHistory" class="mr-2 is-success">Yes, Clear</LoadingButton>
+                        <button @click.prevent="isClearingHistory=false" class="button mr-2 is-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
             <div v-if="viewHistory!==null" class="modal is-active text-monospace text-break">
                 <div class="modal-background"></div>
                 <div class="modal-content">
                     <div class="box has-background-dark has-text-white">
-                        <div  v-html="viewHistory.html_formatted ||viewHistory.content" :readonly="true"></div>
+                        <div v-html="viewHistory.html_formatted ||viewHistory.content" :readonly="true"></div>
                     </div>
                     <div class="is-clearfix is-size-5">
                         <div class="is-pulled-left">
@@ -169,7 +188,8 @@
                 page: 0,
                 contents: {},
 
-                post: ''
+                post: '',
+                isClearingHistory: false
             }
         },
 
@@ -328,6 +348,17 @@
                         },
                     })
                 }
+            },
+
+            clearHistory(btn) {
+                return this.$api.deleteFromRoute('content.clear', {}, {
+                    yes: () => {
+                        this.items = [];
+                        this.contents = {};
+                        this.isClearingHistory = false;
+                    },
+                    any: () => btn.stopLoading()
+                });
             }
         }
     });
