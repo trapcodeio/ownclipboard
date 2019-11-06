@@ -70,7 +70,7 @@
 
 <style>
     .home {
-        margin-top: 15vh;
+        margin-top: 10vh;
     }
 </style>
 

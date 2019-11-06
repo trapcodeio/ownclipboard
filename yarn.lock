@@ -8048,10 +8048,10 @@ x-xss-protection@1.3.0:
   resolved "https://registry.yarnpkg.com/x-xss-protection/-/x-xss-protection-1.3.0.tgz#3e3a8dd638da80421b0e9fff11a2dbe168f6d52c"
   integrity sha512-kpyBI9TlVipZO4diReZMAHWtS0MMa/7Kgx8hwG/EuZLiA6sg4Ah/4TRdASHhRRN3boobzcYgFRUFSgHRge6Qhg==
 
-xpresser@^0.1.69:
-  version "0.1.69"
-  resolved "https://registry.yarnpkg.com/xpresser/-/xpresser-0.1.69.tgz#caf349b27481cc9c4d1e5bda18a79133d26df245"
-  integrity sha512-0K9iHy5DmJwUCd4HQsw6qn0uscLQVqHAiVBZ5ptjx9IFo6Q8Du5csxmjGyKnIf1sdjjXmkcHPa+HKNdcGpG1Tw==
+xpresser@^0.1.71:
+  version "0.1.71"
+  resolved "https://registry.yarnpkg.com/xpresser/-/xpresser-0.1.71.tgz#31ee562a4aeedcc70e29c1d448a81be167dc05df"
+  integrity sha512-oZMnrZC4pUn4b618Lz0Xl7nNhJA6PLGgeWBUxDbX+hERHivIUkp0tOUhC/9PxC+RrM5fwuXy5ZTzXNk2HDt9lQ==
   dependencies:
     "@xpresser/router" "^1.0.3"
     body-parser "^1.19.0"

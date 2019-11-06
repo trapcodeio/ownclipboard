@@ -1,30 +1,29 @@
-const Base = __dirname
-const fs = require("fs");
-const env = require("xpresser/env")(Base);
-const isDev = env["NODE_ENV"] === "development";
-// const ngrok = "clip.ngrok.io";
+const Base = __dirname;
+const env = require('xpresser/env')(Base);
+const isDev = env['NODE_ENV'] === 'development';
+// const ngrok = 'clip.ngrok.io';
 const ngrok = false;
-const domain = ngrok || env["APP_DOMAIN"] || "localhost";
+const domain = ngrok || env['APP_DOMAIN'] || 'localhost';
 
 module.exports = {
-    name: "OwnClipboard",
-    env: env["NODE_ENV"],
+    name: 'OwnClipboard',
+    env: env['NODE_ENV'],
 
     server: {
         domain,
-        port: env["APP_PORT"],
+        port: env['APP_PORT'],
         includePortInUrl: !ngrok
     },
     database: {
         startOnBoot: true,
         /*config: {
-            client: env["DATABASE_CLIENT"],
+            client: env['DATABASE_CLIENT'],
             connection: {
-                host: env["DATABASE_HOST"],
-                port: env["DATABASE_PORT"],
-                user: env["DATABASE_USER"],
-                password: env["DATABASE_PASSWORD"],
-                database: env["DATABASE_NAME"],
+                host: env['DATABASE_HOST'],
+                port: env['DATABASE_PORT'],
+                user: env['DATABASE_USER'],
+                password: env['DATABASE_PASSWORD'],
+                database: env['DATABASE_NAME'],
                 ssl: {
                     ca: fs.readFileSync(Base+'/db_cert.crt').toString()
                 }
@@ -33,8 +32,8 @@ module.exports = {
     },
     paths: {
         base: Base,
-        public: "dist",
-        jsonConfigs: "backend://",
+        public: 'dist',
+        jsonConfigs: 'backend://',
     },
     session: {
         startOnBoot: true,
@@ -42,22 +41,29 @@ module.exports = {
             domain
         },
         ssl: {
-            enabled: env["SSL"],
+            enabled: env['SSL'],
             files: {
-                cert: env["SSL_CERT"],
-                key: env["SSL_KEY"]
+                cert: env['SSL_CERT'],
+                key: env['SSL_KEY']
             }
         },
     },
     response: {
         cacheFiles: !isDev,
-        cacheFileExtensions: ["js", "css", "woff2"],
+        cacheFileExtensions: ['js', 'css', 'woff2'],
     },
 
     plugins: {
-        "@xpresser/auth": {
+        '@xpresser/auth': {
             model: 'User',
             modelWhere: 'username'
+        }
+    },
+
+    packages: {
+        'body-parser': {
+            json: {limit: '50mb', extended: true},
+            urlencoded: {limit: '50mb', extended: true}
         }
     }
 };

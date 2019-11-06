@@ -32,8 +32,12 @@
             <template v-else>
                 <div class="box has-text-centered py-4 has-background-grey-darker">
 
-                    <h1 class="is-size-3 is-size-1-desktop">Click + CTRL+V</h1>
-                    <h5 class="my-3">OR</h5>
+                    <div class="is-hidden-mobile is-hidden-tablet-only">
+                        <h1 class="is-size-3 is-size-1-desktop">Click + CTRL+V</h1>
+                        <h5 class="my-3">OR</h5>
+                    </div>
+
+
                     <button @click.prevent="onPaste" class="button mr-2">
                         <i class="fa fa-paste mr-2"></i> PASTE
                     </button>
@@ -113,8 +117,8 @@
 
             <div v-if="isClearingHistory" class="modal is-active">
                 <div class="modal-background"></div>
-                <div class="modal-content">
-                    <h3 class="is-size-3">Are you sure you want to clear your history?</h3>
+                <div class="modal-content has-text-centered">
+                    <h3 class="is-size-4 is-size-3-desktop">Are you sure you want to clear your history?</h3>
                     <div class="has-text-centered mt-3">
                         <LoadingButton :click="clearHistory" class="mr-2 is-success">Yes, Clear</LoadingButton>
                         <button @click.prevent="isClearingHistory=false" class="button mr-2 is-danger">Cancel</button>
@@ -314,7 +318,13 @@
             },
             addPasteData(any = () => false, yes = () => false) {
                 const data = (this.pasteData || "").trim();
-                if (!this.isAdding && data.length) {
+                if (!this.isAdding && data.length > 0) {
+
+                    if (data.length > 1000000) {
+                        Swal.fire({text: `Text too long.`, type: 'error'});
+                        if (typeof yes === "function") any();
+                        return;
+                    }
 
                     this.items.unshift({
                         content: data,
