@@ -12,7 +12,8 @@ module.exports = {
     server: {
         domain,
         port: env['APP_PORT'],
-        includePortInUrl: !ngrok
+        includePortInUrl: !ngrok,
+        use: {cors: true}
     },
     database: {
         startOnBoot: true,
