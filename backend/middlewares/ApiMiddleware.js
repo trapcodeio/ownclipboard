@@ -56,7 +56,7 @@ module.exports = {
         const clipNotFound = {type: 'clip_not_valid', message: `Clip not valid, maybe already deleted.`};
         const clipCodeNotFound = {type: 'clip_not_found', message: `Clip not found in request.`};
 
-        let clip = http.body('clip', undefined);
+        let clip = http.query('clip', http.body('clip', undefined));
         if (clip) {
             clip = await Content.query().where({
                 user_id: user.id,
