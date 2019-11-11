@@ -111,7 +111,10 @@
 
         <!-- DELETE CLIP -->
         <h1 class="is-size-4 has-text-info mt-3 mb-2">Delete Clip</h1>
-        <p class="mt-3">Example request.</p>
+        <p class="mt-3">Query request example.</p>
+        <pre :class="jsonBox"><code class="language-http" v-html="requests.deleteQueryExample"
+                                    style="white-space: pre-wrap"></code></pre>
+        <p class="mt-3">Body request example</p>
         <pre :class="jsonBox"><code class="language-http" v-html="requests.deleteExample"
                                     style="white-space: pre-wrap"></code></pre>
         <p class="text-monospace">
@@ -119,7 +122,7 @@
                 class="ignore">code</strong> (string:20) of the clip you want to delete. clip code can be found in every
             clip item returned when getting all clips.
             <br><br>
-            If clip is found in the body of your request it will be validated first and can return any of the errors
+            If clip is found in the query or body of your request it will be validated first and can return any of the errors
             below.
         </p>
 
@@ -173,6 +176,7 @@
         searchClipExample: `GET /api/all?api_key={api_key}&search=clip`,
         addExample: `POST /api/add\nbody: { api_key, content }`,
         deleteExample: `DELETE /api/delete\nbody: { api_key, clip }`,
+        deleteQueryExample: `DELETE /api/delete?api_key={api_key}&clip={clip}`,
     };
 
     export default {

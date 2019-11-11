@@ -1,9 +1,9 @@
 {
   "status": 200,
   "data": {
+    "name": "API_DEVICE_NAME",
     "api_key": "YOUR_API_KEY",
     "hits": 7,
-    "used_by": "DEVICE_ID or null",
-    "username": "API_KEY_USERNAME"
+    "used_by": "DEVICE_ID or null"
   }
 }
