@@ -25,7 +25,8 @@ class Device extends $.model {
             'user_id',
             'hits',
             'api_key',
-            'created_at'
+            'created_at',
+            'updated_at'
         ]
     }
 

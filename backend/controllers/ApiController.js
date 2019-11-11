@@ -38,11 +38,11 @@ const ApiController = $.handler({
 
         const data = {
             ...device.$pick([
+                'name',
                 'api_key',
                 'hits',
                 'used_by'
             ]),
-            username: user.username,
             used_by
         };
 

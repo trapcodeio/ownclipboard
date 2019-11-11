@@ -76,11 +76,9 @@ module.exports = {
         http.locals.set('api_user', user);
         http.locals.set('api_clip', clip);
 
-        const hits = (device.hits || 0) + 1;
         // Update Hits in background
-        Device.query().where({api_key: api_key}).update({hits}).then(() => {
-            // Do nothing..
-        });
+        $.events.emit('Api.updateHits', api_key);
+
 
         return http.next();
     }

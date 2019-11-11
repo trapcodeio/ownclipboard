@@ -27,6 +27,9 @@
                                                                                      v-clipboard:success="onCopy"
                                                                                      class="has-text-warning text-break text-monospace is-clickable">{{item.api_key}}</code>
                             <br>
+                            <span class="has-text-grey-light">Last accessed: </span>
+                            <TimeAgo :date="item.updated_at"/>
+                            <br>
                             <span class="has-text-grey-light">Connected: </span>
                             <i v-if="item.used" class="far fa-check-circle has-text-success"></i>
                             <i v-else class="far fa-minus-circle"></i>
@@ -144,7 +147,6 @@
                             this.devices.splice(index, 1, device);
                         },
                     })
-
                 }
             }
         },
