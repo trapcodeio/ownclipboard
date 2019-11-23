@@ -1,8 +1,8 @@
 # OwnClipboard
 Demo [ownclipboard.com](https://ownclipboard.com)
 
-OwnClipboard was built out of the need to copy/paste text across multiple devices via the a application or direct a browser access.
-Also **OWN**Clipboard as the name says was built to be owned, meaning that you can host your **own** clipboard on
+OwnClipboard was built out of the need to copy/paste text across multiple devices via a application or direct a browser access.
+Also **Own**Clipboard as the name says was built to be owned, meaning that you can host your **own** clipboard on
 your **own** server with same functions but this time with your data in your control.
 
 
@@ -14,16 +14,17 @@ your **own** server with same functions but this time with your data in your con
 - [Shred-Bootstrap](https://www.npmjs.com/package/shred-bootstrap)
 
 ### Backend
-- [Nodejs](https://nodejs.org) (>= 10)
-- [XpresserJs](https://xpresserjs.com)
-- [xjs-cli](https://xpresserjs.com/xjs-cli.html)
+- [Nodejs](https://nodejs.org) (>=10)
+- [XpresserJs](https://xpresserjs.com) (>=0.1.71)
+- [xjs-cli](https://xpresserjs.com/xjs-cli.html) (>=0.1.11)
 - [Mysql](https://www.npmjs.com/package/mysql)
 
 
 ## First Time setup
 We recommend you use **yarn** and already have Nodejs installed on your machine.
 
-if you don't have xjs-cli then it means you have not worked with any **xpresser** project before. It is the command line assistant of the xpresserjs framework.
+##### Install Xjs-Cli (One Time)
+if you don't have xjs-cli, It is the command line assistant of the xpresserjs framework.
 ```sh
 yarn global add xjs-cli
 ```
@@ -34,7 +35,8 @@ Global? yes global because you only need to install this once and it will assist
 cd project_folder
 ```
 
-Copy `.env.example` to `.env` and fill in your desired settings.
+##### Rename .Env
+Rename `.env.example` to `.env` and fill in your desired settings.
 
 ##### Install all dependencies
 ```sh
@@ -55,7 +57,7 @@ To install **knex** and other production tools you **must** run
 ```shell script
 xjs install-prod-tools
 ```
-if the above failed saying "Invalid command: install-prod-tool", run it outside your project root.
+if the above failed saying "Invalid command: install-prod-tools", run it outside your project root.
 eg
 ```shell script
 cd backend

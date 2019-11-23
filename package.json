@@ -1,11 +1,15 @@
 {
-  "name": "ownClipboard",
+  "name": "ownclipboard",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "xjs @ updateRoutesJson && vue-cli-service serve",
     "build": "xjs @ updateRoutesJson && vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "node server.js",
+    "start-dev": "xjs start",
+    "start-prod": "xjs start --prod",
+    "stop-server": "xjs stop server"
   },
   "dependencies": {
     "@sweetalert2/themes": "^2.2.1",
