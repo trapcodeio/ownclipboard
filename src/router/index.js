@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Help from '../views/Help.vue'
 import AuthLayout from '../views/AuthLayout';
 import Dashboard from '../views/Dashboard';
 import DocsLayout from '../views/Docs/Layout';
@@ -16,6 +17,12 @@ const routes = [
         path: '/',
         name: 'index',
         component: Home
+    },
+
+    {
+        path: '/help',
+        name: 'help',
+        component: Help
     },
 
     // Logged Routes

@@ -1,0 +1,254 @@
+<template>
+    <div>
+
+        <div class="section">
+            <div class="container">
+                <h1 class="has-text-white is-size-4">OwnClipboard</h1>
+
+                <div class="columns">
+                    <div class="column">
+                        <div class=" has-background-dark px-3 py-3">
+                            <p>
+                                Ownclipboard is the fastest way to quickly copy and paste in all your apps. it is more
+                                than a clipboard
+                                manager, with ownclipboard you can host your own instance of ownclipbaord on your server
+                                see guide <span><router-link class="has-text-success"
+                                                             to="/docs">here.</router-link></span>
+
+                            </p>
+                            <h5 class="has-text-white py-2"> Ownclipboad has 5 main features that will make it your
+                                favorite clipboard manager.
+                            </h5>
+                            <ul>
+                                <li class="py-1"> - You have the ability to use your custom host provided.</li>
+                                <li class="py-1"> - Copy in 1-Tap to perform quick actions from all the apps.</li>
+                                <li class="py-1"> - An enhanced clipboard to save your copied items.</li>
+                                <li class="py-1"> - A Paste feature which allows you to paste anything from your
+                                    clipboard in 1-Tap.
+                                </li>
+                                <li class="py-1"> - Synchronize your clipboard history with all your devices.</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <img class=" px-3" src="/img/phone.png">
+                    </div>
+
+
+                </div>
+
+                <hr>
+                <h1 class="has-text-white is-size-4 pb-4">Get started in 4 Easy steps</h1>
+
+                <!--     <div class="columns is-mobile">
+
+                         <template v-for="step in steps">
+                             <div :key="step.id">
+
+                                 <div class="column">
+                                     <div class="has-background-dark px-3 py-3 ">
+
+                                         <p class="has-text-centered"><span class="is-size-1" v-html="step.icon"></span></p>
+                                         <p class="has-text-white is-size-4 ">{{step.title}}</p>
+                                         <p v-html="step.text"></p>
+
+                                     </div>
+
+                                 </div>
+                             </div>
+                         </template>
+
+
+                     </div>-->
+                <div class="columns  is-multiline">
+
+
+                    <div class="column is-full-mobile is-half-tablet ">
+                        <div class="has-background-dark px-3 py-3 ">
+
+                            <p class="has-text-centered"><span class="is-size-1"><i class="fad fa-sign-in"></i></span>
+                            </p>
+                            <p class="has-text-white is-size-4 ">Sign up</p>
+                            <p>
+                                <router-link class="has-background-success link px-2" to="/">Signup</router-link>
+                                for a username and password for your Ownclipboard account,  if you have not signed
+                                up already.
+                            </p>
+
+
+                        </div>
+                    </div>
+                    <div class="column is-full-mobile  is-half-tablet">
+                        <div class="has-background-dark px-3 py-3 ">
+
+                            <p class="has-text-centered "><span class="is-size-1"><i class="fad fa-paste"></i></span>
+                            </p>
+                            <p class="has-text-white is-size-4 ">Paste your clipboard</p>
+                            <p>
+                                Paste the content of your clipboard or create new content immediately, you are not
+                                limited by what you can paste.
+
+                            </p>
+
+
+                        </div>
+                    </div>
+                    <div class="column is-full-mobile is-half-tablet">
+                        <div class="has-background-dark px-3 py-3 ">
+
+                            <p class="has-text-centered"><span class="is-size-1"><i class="fad fa-mobile"></i></span>
+                            </p>
+                            <p class="has-text-white is-size-4 ">Add a Device</p>
+                            <p>
+                                To use Ownclipboard on more than one device, Click on
+                                <router-link class="has-background-success link px-2 mx-1" to="/devices">Account > Devices
+                                </router-link> add a new Device, and copy your Api Key.
+
+                            </p>
+
+
+                        </div>
+                    </div>
+                    <div class="column is-full-mobile is-half-tablet">
+                        <div class="has-background-dark px-3 py-3 ">
+
+                            <p class="has-text-centered"><span class="is-size-1"><i class="fad fa-link"></i></span>
+                            </p>
+                            <p class="has-text-white is-size-4 ">Synchronise your devices</p>
+                            <p>
+                                Paste your secure API key on your app and click the request  button <br> your clipboard will be
+                                automatically Synchronised with your Device.'
+
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <hr>
+
+
+                <h1 class="has-text-white is-size-4 py-2">Download</h1>
+
+                <div class="columns">
+                    <div class="column">
+                        <p class="has-background-dark px-3 py-3">
+                            Ownclipboard is available for Download on all Apple Store and Google PlayStore
+                        </p>
+                        <div class="field is-grouped">
+                            <div class="control my-4">
+                                <button class="button is-success is-outlined is-large">Apple Store <span
+                                        class="mx-2"><i class="fab fa-app-store"></i></span></button>
+
+
+                            </div>
+                            <div class="control my-4">
+                                <a href="https://play.google.com/store/apps/details?id=com.ownclipboard.own_clipboard"
+                                   class="button is-success is-outlined is-large">Google Store <span class="mx-2 "><i
+                                        class="fab fa-google-play"></i></span></a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <!--                        <i class="fab fa-app-store"></i>-->
+                        <img class=" px-3" src="/img/phone.png">
+                    </div>
+
+                </div>
+                <h1 class="has-text-white is-size-4">Share</h1>
+                <div class="has-background-dark px-3 py-3">
+<p>
+    Share this Aweosme app with your friends using our Cool share buttons
+
+</p>
+                    <div class="is-size-1">
+                        <i class="fab fa-facebook px-2"></i>
+                        <i class="fab fa-whatsapp px-2"></i>
+                        <i class="fab fa-instagram px-2"></i>
+                        <i class="fab fa-google px-2"></i>
+                        <i class="fab fa-youtube px-2"></i>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                // key: value
+               /* steps: [
+                    {
+                        icon: '<i class="fad fa-sign-in"></i>',
+                        title: 'Sign up',
+                        text:
+                            '<p><router-link class="has-text-success" to="/" >Signup</router-link> for a username and password for your Ownclipboard account, <br> if you have not signed up alread'
+                    },
+                    {
+                        icon: '<i class="fad fa-paste"></i>',
+                        title: 'Paste your clipboard',
+                        text:
+                            'Paste the content of your clipboard or create new content immediately, you are not limited by what you can paste '
+                    },
+                    {
+                        icon: '<i class="fad fa-mobile"></i>',
+                        title: 'Add a Device',
+                        text: '' +
+                            'To use Ownclipboard on more than one device, Click on<router-link class="has-text-success" to="/devices">Account > Devices</router-link>' +
+                            ' add a new Device, and copy your Api Key.'
+                    },
+                    {
+                        icon: '<i class="fad fa-link"></i>',
+                        title: 'Synchronise your devices',
+                        text:
+                            'Paste your secure API key on your app and request <br> your clipboard will be automatically Synchronised with your Device.'
+                    },
+
+                ]*/
+            }
+        },
+
+        methods: {
+            handleClick() {
+                alert(window.document.title)
+                alert(window.document.title)
+            },
+
+
+            /*    async handleClick () {
+                    // feature detection
+                    if ('share' in navigator) {
+                        try {
+                            await navigator.share({
+                                title: 'Click-bait title #6314',
+                                url: 'http://192.168.43.199:8080/'
+                            });
+                        } catch (err) {
+                            console.error(err);
+                        }
+                    }
+                }*/
+        }
+    }
+</script>
+
+<style scoped>
+    .link {
+        border-radius: 10px;
+    }
+
+    .logo {
+        height: 50px;
+    }
+
+
+</style>
