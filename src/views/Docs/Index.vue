@@ -126,6 +126,7 @@
             below.
         </p>
 
+
         <p class="mt-3"><span>Absence</span> of clip in request will return error</p>
         <div :class="jsonBox">
             <vue-json-pretty

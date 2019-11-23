@@ -28,6 +28,7 @@
     "bulma": "^0.8.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "nodemon": "^2.0.1",
     "prismjs": "^1.17.1",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
