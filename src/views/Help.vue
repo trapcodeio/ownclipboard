@@ -12,8 +12,8 @@
                                 Ownclipboard is the fastest way to quickly copy and paste in all your apps. it is more
                                 than a clipboard
                                 manager, with ownclipboard you can host your own instance of ownclipbaord on your server
-                                see guide <span><router-link class="has-text-success"
-                                                             to="/docs">here.</router-link></span>
+                                see guide <span><a target="_blank"  class="has-text-success"
+                                                             href="https://github.com/trapcodeio/ownclipboard">here.</a></span>
 
                             </p>
                             <h5 class="has-text-white py-2"> Ownclipboad has 5 main features that will make it your
