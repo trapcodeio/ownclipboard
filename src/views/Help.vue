@@ -12,8 +12,8 @@
                                 Ownclipboard is the fastest way to quickly copy and paste in all your apps. it is more
                                 than a clipboard
                                 manager, with ownclipboard you can host your own instance of ownclipbaord on your server
-                                see guide <span><router-link class="has-background-success link px-2"
-                                                             to="/docs">here.</router-link></span>
+                                see guide <span><a  href="https://github.com/trapcodeio/ownclipboard-vuejs"  target="_blank" class="has-background-success link px-2"
+                                                             to="/docs">here.</a></span>
 
                             </p>
                             <h5 class="has-text-white py-2"> Ownclipboad has 5 main features that will make it your
@@ -163,7 +163,7 @@
                 </div>
 
 
-                <h1 class="has-text-white is-size-4">Share</h1>
+             <!--   <h1 class="has-text-white is-size-4">Share</h1>
                 <div class="has-background-dark px-3 py-3 my-4">
                     <p>
                         Share this Aweosme app with your friends using our Cool share buttons
@@ -176,7 +176,7 @@
                         <i class="fab fa-google px-2"></i>
                         <i class="fab fa-youtube px-2"></i>
                     </div>
-                </div>
+                </div>-->
 
 
 
