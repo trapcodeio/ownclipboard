@@ -3,7 +3,7 @@
 
         <div class="section">
             <div class="container">
-                <h1 class="has-text-white is-size-4">OwnClipboard</h1>
+                <h1 class="has-text-white is-size-4 py-3">OwnClipboard</h1>
 
                 <div class="columns">
                     <div class="column">
@@ -12,8 +12,8 @@
                                 Ownclipboard is the fastest way to quickly copy and paste in all your apps. it is more
                                 than a clipboard
                                 manager, with ownclipboard you can host your own instance of ownclipbaord on your server
-                                see guide <span><a target="_blank"  class="has-text-success"
-                                                             href="https://github.com/trapcodeio/ownclipboard">here.</a></span>
+                                see guide <span><router-link class="has-background-success link px-2"
+                                                             to="/docs">here.</router-link></span>
 
                             </p>
                             <h5 class="has-text-white py-2"> Ownclipboad has 5 main features that will make it your
@@ -33,7 +33,11 @@
 
                     </div>
                     <div class="column">
-                        <img class=" px-3" src="/img/phone.png">
+                        <figure class="image ">
+                            <img class="mockup px-3" src="/img/app1.svg">
+                        </figure>
+
+
                     </div>
 
 
@@ -42,26 +46,24 @@
                 <hr>
                 <h1 class="has-text-white is-size-4 pb-4">Get started in 4 Easy steps</h1>
 
-                <!--     <div class="columns is-mobile">
+                <!--<div class="columns is-multiline">
 
-                         <template v-for="step in steps">
-                             <div :key="step.id">
+                    <template v-for="step in steps">
 
-                                 <div class="column">
-                                     <div class="has-background-dark px-3 py-3 ">
+                            <div class="column is-half-tablet is-3-desktop" :key="step.id">
+                                <div class="has-background-dark px-3 py-3 ">
 
-                                         <p class="has-text-centered"><span class="is-size-1" v-html="step.icon"></span></p>
-                                         <p class="has-text-white is-size-4 ">{{step.title}}</p>
-                                         <p v-html="step.text"></p>
+                                    <p class="has-text-centered"><span class="is-size-1" v-html="step.icon"></span></p>
+                                    <p class="has-text-white is-size-4 ">{{step.title}}</p>
+                                    <p v-html="step.text"></p>
 
-                                     </div>
+                                </div>
 
-                                 </div>
-                             </div>
-                         </template>
+                            </div>
+                    </template>
 
 
-                     </div>-->
+                </div>-->
                 <div class="columns  is-multiline">
 
 
@@ -73,7 +75,7 @@
                             <p class="has-text-white is-size-4 ">Sign up</p>
                             <p>
                                 <router-link class="has-background-success link px-2" to="/">Signup</router-link>
-                                for a username and password for your Ownclipboard account,  if you have not signed
+                                for a username and password for your Ownclipboard account, if you have not signed
                                 up already.
                             </p>
 
@@ -103,8 +105,10 @@
                             <p class="has-text-white is-size-4 ">Add a Device</p>
                             <p>
                                 To use Ownclipboard on more than one device, Click on
-                                <router-link class="has-background-success link px-2 mx-1" to="/devices">Account > Devices
-                                </router-link> add a new Device, and copy your Api Key.
+                                <router-link class="has-background-success link px-2 mx-1" to="/devices">Account >
+                                    Devices
+                                </router-link>
+                                add a new Device, and copy your Api Key.
 
                             </p>
 
@@ -118,7 +122,8 @@
                             </p>
                             <p class="has-text-white is-size-4 ">Synchronise your devices</p>
                             <p>
-                                Paste your secure API key on your app and click the request  button <br> your clipboard will be
+                                Paste your secure API key on your app and click the request button <br> your clipboard
+                                will be
                                 automatically Synchronised with your Device.'
 
                             </p>
@@ -134,10 +139,10 @@
 
                 <h1 class="has-text-white is-size-4 py-2">Download</h1>
 
-                <div class="columns">
+                <div class=" columns">
                     <div class="column">
                         <p class="has-background-dark px-3 py-3">
-                            Ownclipboard is available for Download on all Apple Store and Google PlayStore
+                            Ownclipboard is available for Download on the Apple Store and Google Play Store
                         </p>
                         <div class="field is-grouped">
                             <div class="control my-4">
@@ -154,25 +159,36 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column">
-                        <!--                        <i class="fab fa-app-store"></i>-->
-                        <img class=" px-3" src="/img/phone.png">
-                    </div>
 
                 </div>
-                <h1 class="has-text-white is-size-4">Share</h1>
-                <div class="has-background-dark px-3 py-3">
-<p>
-    Share this Aweosme app with your friends using our Cool share buttons
 
-</p>
-                    <div class="is-size-1">
+
+                <h1 class="has-text-white is-size-4">Share</h1>
+                <div class="has-background-dark px-3 py-3 my-4">
+                    <p>
+                        Share this Aweosme app with your friends using our Cool share buttons
+
+                    </p>
+                    <div class="is-size-1 ">
                         <i class="fab fa-facebook px-2"></i>
                         <i class="fab fa-whatsapp px-2"></i>
                         <i class="fab fa-instagram px-2"></i>
                         <i class="fab fa-google px-2"></i>
                         <i class="fab fa-youtube px-2"></i>
                     </div>
+                </div>
+
+
+
+                <h1 class="has-text-white is-size-4 py-2">Developers</h1>
+                <div class="has-background-dark px-3 py-3">
+                    <p>
+                        Are you a developer ? <br> Host your own instance of Ownclipboard and customize to
+                        your satisfaction.
+                       Ownclipboard is open source and we anxious to see how you tweak and customize it. <br>To get stared visit the
+                        <span ><router-link class="has-background-success link px-2" to="/docs">API Documentation</router-link></span>
+                    </p>
+
                 </div>
 
 
@@ -186,38 +202,49 @@
         data() {
             return {
                 // key: value
-               /* steps: [
-                    {
-                        icon: '<i class="fad fa-sign-in"></i>',
-                        title: 'Sign up',
-                        text:
-                            '<p><router-link class="has-text-success" to="/" >Signup</router-link> for a username and password for your Ownclipboard account, <br> if you have not signed up alread'
-                    },
-                    {
-                        icon: '<i class="fad fa-paste"></i>',
-                        title: 'Paste your clipboard',
-                        text:
-                            'Paste the content of your clipboard or create new content immediately, you are not limited by what you can paste '
-                    },
-                    {
-                        icon: '<i class="fad fa-mobile"></i>',
-                        title: 'Add a Device',
-                        text: '' +
-                            'To use Ownclipboard on more than one device, Click on<router-link class="has-text-success" to="/devices">Account > Devices</router-link>' +
-                            ' add a new Device, and copy your Api Key.'
-                    },
-                    {
-                        icon: '<i class="fad fa-link"></i>',
-                        title: 'Synchronise your devices',
-                        text:
-                            'Paste your secure API key on your app and request <br> your clipboard will be automatically Synchronised with your Device.'
-                    },
+                /* steps: [
+                     {
+                         icon: '<i class="fad fa-sign-in"></i>',
+                         title: 'Sign up',
+                         text:
+                             '<p><router-link class="has-text-success" to="/" >Signup</router-link> for a username and password for your Ownclipboard account, <br> if you have not signed up alread'
+                     },
+                     {
+                         icon: '<i class="fad fa-paste"></i>',
+                         title: 'Paste your clipboard',
+                         text:
+                             'Paste the content of your clipboard or create new content immediately, you are not limited by what you can paste '
+                     },
+                     {
+                         icon: '<i class="fad fa-mobile"></i>',
+                         title: 'Add a Device',
+                         text: '' +
+                             'To use Ownclipboard on more than one device, Click on<router-link class="has-text-success" to="/devices">Account > Devices</router-link>' +
+                             ' add a new Device, and copy your Api Key.'
+                     },
+                     {
+                         icon: '<i class="fad fa-link"></i>',
+                         title: 'Synchronise your devices',
+                         text:
+                             'Paste your secure API key on your app and request <br> your clipboard will be automatically Synchronised with your Device.'
+                     },
 
-                ]*/
+                 ]*/
             }
         },
 
         methods: {
+
+            share(){
+                if (navigator.share) {
+        alert('i am here')
+    } else {
+                    alert('i am not here')
+
+                    // provide a fallback here
+    }
+            },
+
             handleClick() {
                 alert(window.document.title)
                 alert(window.document.title)
@@ -242,6 +269,15 @@
 </script>
 
 <style scoped>
+
+    .mockup{
+
+        height: 707px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
     .link {
         border-radius: 10px;
     }
