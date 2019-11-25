@@ -130,14 +130,14 @@
                         </p>
                         <div class="field is-grouped">
                             <div class="control my-4">
-                                <button class="button is-success is-outlined is-desktop-">Apple Store <span
+                                <button class="button is-success is-outlined  is-medium">Apple Store <span
                                         class="mx-2"><i class="fab fa-app-store"></i></span></button>
 
 
                             </div>
                             <div class="control my-4">
                                 <a href="https://play.google.com/store/apps/details?id=com.ownclipboard.own_clipboard"
-                                   class="button is-success is-outlined is-large">Google Store <span class="mx-2 "><i
+                                   class="button is-success is-outlined  is-medium">Google Store <span class="mx-2 "><i
                                         class="fab fa-google-play"></i></span></a>
 
                             </div>
