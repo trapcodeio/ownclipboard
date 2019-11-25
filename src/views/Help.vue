@@ -11,12 +11,12 @@
                             <p>
                                 Ownclipboard is the fastest way to quickly copy and paste in all your apps. it is more
                                 than a clipboard
-                                manager, with ownclipboard you can host your own instance of ownclipbaord on your server
-                                see guide <span><a  href="https://github.com/trapcodeio/ownclipboard"  target="_blank" class="has-background-success link px-2"
-                                                             to="/docs">here.</a></span>
+                                manager, with ownclipboard you can host your own instance of ownclipboard on your server
+                                see guide <span><a href="https://github.com/trapcodeio/ownclipboard" target="_blank"
+                                                   class="has-background-success link px-2">here.</a></span>
 
                             </p>
-                            <h5 class="has-text-white py-2"> Ownclipboad has 5 main features that will make it your
+                            <h5 class="has-text-white py-2"> Ownclipboard has 5 main features that will make it your
                                 favorite clipboard manager.
                             </h5>
                             <ul>
@@ -163,21 +163,20 @@
                 </div>
 
 
-             <!--   <h1 class="has-text-white is-size-4">Share</h1>
-                <div class="has-background-dark px-3 py-3 my-4">
-                    <p>
-                        Share this Aweosme app with your friends using our Cool share buttons
+                <!--   <h1 class="has-text-white is-size-4">Share</h1>
+                   <div class="has-background-dark px-3 py-3 my-4">
+                       <p>
+                           Share this Aweosme app with your friends using our Cool share buttons
 
-                    </p>
-                    <div class="is-size-1 ">
-                        <i class="fab fa-facebook px-2"></i>
-                        <i class="fab fa-whatsapp px-2"></i>
-                        <i class="fab fa-instagram px-2"></i>
-                        <i class="fab fa-google px-2"></i>
-                        <i class="fab fa-youtube px-2"></i>
-                    </div>
-                </div>-->
-
+                       </p>
+                       <div class="is-size-1 ">
+                           <i class="fab fa-facebook px-2"></i>
+                           <i class="fab fa-whatsapp px-2"></i>
+                           <i class="fab fa-instagram px-2"></i>
+                           <i class="fab fa-google px-2"></i>
+                           <i class="fab fa-youtube px-2"></i>
+                       </div>
+                   </div>-->
 
 
                 <h1 class="has-text-white is-size-4 py-2">Developers</h1>
@@ -185,8 +184,10 @@
                     <p>
                         Are you a developer ? <br> Host your own instance of Ownclipboard and customize to
                         your satisfaction.
-                       Ownclipboard is open source and we anxious to see how you tweak and customize it. <br>To get stared visit the
-                        <span ><router-link class="has-background-success link px-2" to="/docs">API Documentation</router-link></span>
+                        Ownclipboard is open source and we anxious to see how you tweak and customize it. <br>To get
+                        stared visit the
+                        <span><router-link class="has-background-success link px-2"
+                                           to="/docs">API Documentation</router-link></span>
                     </p>
 
                 </div>
@@ -235,14 +236,14 @@
 
         methods: {
 
-            share(){
+            share() {
                 if (navigator.share) {
-        alert('i am here')
-    } else {
+                    alert('i am here')
+                } else {
                     alert('i am not here')
 
                     // provide a fallback here
-    }
+                }
             },
 
             handleClick() {
@@ -270,7 +271,7 @@
 
 <style scoped>
 
-    .mockup{
+    .mockup {
 
         height: 707px;
         display: block;
@@ -278,6 +279,7 @@
         margin-right: auto;
 
     }
+
     .link {
         border-radius: 10px;
     }
