@@ -15,6 +15,10 @@ class User extends $.model {
         return "users";
     }
 
+    /**
+     * Pick data returned to frontend javascript
+     * @returns []
+     */
     static jsPick(){
         return [
             'email',
