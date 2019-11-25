@@ -12,7 +12,7 @@
                                 Ownclipboard is the fastest way to quickly copy and paste in all your apps. it is more
                                 than a clipboard
                                 manager, with ownclipboard you can host your own instance of ownclipbaord on your server
-                                see guide <span><a  href="https://github.com/trapcodeio/ownclipboard-vuejs"  target="_blank" class="has-background-success link px-2"
+                                see guide <span><a  href="https://github.com/trapcodeio/ownclipboard"  target="_blank" class="has-background-success link px-2"
                                                              to="/docs">here.</a></span>
 
                             </p>
