@@ -137,7 +137,7 @@
                             </div>
                             <div class="control my-4">
                                 <a href="https://play.google.com/store/apps/details?id=com.ownclipboard.own_clipboard"
-                                   class="button is-success is-outlined  is-medium">Google Store <span class="mx-2 "><i
+                                   class="button is-success is-outlined is-medium ">Google Store <span class="mx-2 "><i
                                         class="fab fa-google-play"></i></span></a>
 
                             </div>
