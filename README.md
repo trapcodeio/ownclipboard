@@ -1,7 +1,8 @@
 # OwnClipboard
 Demo [ownclipboard.com](https://ownclipboard.com)
 
-OwnClipboard was built out of the need to copy/paste text across multiple devices via a application or direct a browser access.
+OwnClipboard was built out of the need to copy/paste text across multiple devices via an application or direct browser access.
+
 Also **Own**Clipboard as the name says was built to be owned, meaning that you can host your **own** clipboard on
 your **own** server with same functions but this time with your data in your control.
 
@@ -24,11 +25,11 @@ your **own** server with same functions but this time with your data in your con
 We recommend you use **yarn** and already have Nodejs installed on your machine.
 
 ##### Install Xjs-Cli (One Time)
-if you don't have xjs-cli, It is the command line assistant of the xpresserjs framework.
+xjs-cli is the command line assistant of XpresserJs framework.
 ```sh
 yarn global add xjs-cli
 ```
-Global? yes global because you only need to install this once and it will assist you in all xpresser projects generate controllers, models e.t.c
+Global? yes global because you only need to install this once and it will assist you in all xpresser projects to generate controllers, models, events, migrations e.t.c
 
 
 ```
@@ -64,7 +65,7 @@ cd backend
 xjs install-prod-tools
 ```
 
-After installation **knex** should be available on your machine.
+After installation, **knex** should be available on your machine.
 Now run `xjs  migrate` to create our tables and database structure
 ```shell script
 xjs migrate
@@ -74,21 +75,23 @@ xjs migrate
 ##### Development
 ```shell script
 node server.js
-# or using nodemon 
+# or
 xjs start
 ```
-using `xjs start` enables server auto reload using `nodemon`
-In development your server can be stopped by quiting your console.
+using `xjs start` enables server auto reload using `nodemon`.
+
+In development your server can be stopped by quitting your console.
 
 ##### Production
-In production, your server will be handled by a production tool installed by `xjs install-prod-tools` command called [pm2](https://www.npmjs.com/package/pm2)
+In production, your server will be handled by a production tool installed by `xjs install-prod-tools` called [pm2](https://www.npmjs.com/package/pm2)
 ```shell script
+# START
 xjs start --prod
-# STOP BY RUNNING
+# STOP
 xjs stop server
 ```
 
-That's all. these steps should have your **own**clipboard up and running on your server.
+That's all! You should have your **own**clipboard up and running on your server.
 
 
 ##### Compiles and hot-reloads for development

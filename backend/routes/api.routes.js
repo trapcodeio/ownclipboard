@@ -3,6 +3,9 @@
  */
 const Route = $.router;
 
+/**
+ * All "/api" routes are defined here.
+ */
 Route.path('/api').middleware('Api');
 Route.path('/api', () => {
 

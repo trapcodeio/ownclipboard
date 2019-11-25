@@ -14,8 +14,6 @@ const DataSchema = {
 const AuthController = $.handler({
     // Controller Name
     name: "AuthController",
-    // Controller Middlewares
-    // middleware: {'@change_password': 'dyccyw'},
     // Controller Default Service Error Handler.
     e: $$.defaultErrorHandler,
 
