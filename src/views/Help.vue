@@ -46,24 +46,7 @@
                 <hr>
                 <h1 class="has-text-white is-size-4 pb-4">Get started in 4 Easy steps</h1>
 
-                <!--<div class="columns is-multiline">
 
-                    <template v-for="step in steps">
-
-                            <div class="column is-half-tablet is-3-desktop" :key="step.id">
-                                <div class="has-background-dark px-3 py-3 ">
-
-                                    <p class="has-text-centered"><span class="is-size-1" v-html="step.icon"></span></p>
-                                    <p class="has-text-white is-size-4 ">{{step.title}}</p>
-                                    <p v-html="step.text"></p>
-
-                                </div>
-
-                            </div>
-                    </template>
-
-
-                </div>-->
                 <div class="columns  is-multiline">
 
 
@@ -163,20 +146,6 @@
                 </div>
 
 
-             <!--   <h1 class="has-text-white is-size-4">Share</h1>
-                <div class="has-background-dark px-3 py-3 my-4">
-                    <p>
-                        Share this Aweosme app with your friends using our Cool share buttons
-
-                    </p>
-                    <div class="is-size-1 ">
-                        <i class="fab fa-facebook px-2"></i>
-                        <i class="fab fa-whatsapp px-2"></i>
-                        <i class="fab fa-instagram px-2"></i>
-                        <i class="fab fa-google px-2"></i>
-                        <i class="fab fa-youtube px-2"></i>
-                    </div>
-                </div>-->
 
 
 
@@ -201,70 +170,11 @@
     export default {
         data() {
             return {
-                // key: value
-                /* steps: [
-                     {
-                         icon: '<i class="fad fa-sign-in"></i>',
-                         title: 'Sign up',
-                         text:
-                             '<p><router-link class="has-text-success" to="/" >Signup</router-link> for a username and password for your Ownclipboard account, <br> if you have not signed up alread'
-                     },
-                     {
-                         icon: '<i class="fad fa-paste"></i>',
-                         title: 'Paste your clipboard',
-                         text:
-                             'Paste the content of your clipboard or create new content immediately, you are not limited by what you can paste '
-                     },
-                     {
-                         icon: '<i class="fad fa-mobile"></i>',
-                         title: 'Add a Device',
-                         text: '' +
-                             'To use Ownclipboard on more than one device, Click on<router-link class="has-text-success" to="/devices">Account > Devices</router-link>' +
-                             ' add a new Device, and copy your Api Key.'
-                     },
-                     {
-                         icon: '<i class="fad fa-link"></i>',
-                         title: 'Synchronise your devices',
-                         text:
-                             'Paste your secure API key on your app and request <br> your clipboard will be automatically Synchronised with your Device.'
-                     },
 
-                 ]*/
             }
         },
 
-        methods: {
 
-            share(){
-                if (navigator.share) {
-        alert('i am here')
-    } else {
-                    alert('i am not here')
-
-                    // provide a fallback here
-    }
-            },
-
-            handleClick() {
-                alert(window.document.title)
-                alert(window.document.title)
-            },
-
-
-            /*    async handleClick () {
-                    // feature detection
-                    if ('share' in navigator) {
-                        try {
-                            await navigator.share({
-                                title: 'Click-bait title #6314',
-                                url: 'http://192.168.43.199:8080/'
-                            });
-                        } catch (err) {
-                            console.error(err);
-                        }
-                    }
-                }*/
-        }
     }
 </script>
 
@@ -282,9 +192,6 @@
         border-radius: 10px;
     }
 
-    .logo {
-        height: 50px;
-    }
 
 
 </style>
