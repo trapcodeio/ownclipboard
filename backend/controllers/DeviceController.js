@@ -2,7 +2,7 @@
 const Device = $.use.model("Device");
 /**
  * DeviceController
- * @type {ControllerService}
+ * @type {Xpresser.Controller.Handler}
  */
 const DeviceController = $.handler({
     // Controller Name
@@ -38,7 +38,7 @@ const DeviceController = $.handler({
 
 
     /**
-     * Example Method.
+     * Get all Devices
      * @returns {*}
      */
     all: async (http, {user}) => {
@@ -60,6 +60,13 @@ const DeviceController = $.handler({
         return http.toApi({devices});
     },
 
+    /**
+     * Add Device
+     * @param http
+     * @param user
+     * @param error
+     * @returns {Promise<Knex.ColumnBuilder|*>}
+     */
     add: async (http, {user}, error) => {
         // Get name from body
         const name = http.body("name", "");
@@ -84,6 +91,12 @@ const DeviceController = $.handler({
         return http.toApi({device, created: true, __say: 'Device added successfully.'})
     },
 
+    /**
+     * Delete Device
+     * @param http
+     * @param device
+     * @returns {Promise<Knex.ColumnBuilder>}
+     */
     delete: async (http, {device}) => {
         // Get device name
         const name = device.name;

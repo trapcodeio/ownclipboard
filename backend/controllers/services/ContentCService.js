@@ -2,7 +2,7 @@
 const Content = $.use.model('Content');
 /**
  * ContentCService
- * @type {XpresserController.Services|*}
+ * @type {Xpresser.Controller.Services|*}
  */
 const ContentCService = {};
 ContentCService.namespace = "content";

@@ -7,8 +7,9 @@ module.exports = {
     namespace: "Api",
 
     /**
-     * The `index` method is called by default.
-     * it also inherits namespace as name.
+     * Update Hits Event
+     * @param api_key
+     * @returns {Promise<void>}
      */
     async updateHits(api_key) {
         // Your Code

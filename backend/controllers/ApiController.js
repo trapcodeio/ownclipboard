@@ -3,12 +3,12 @@ const Content = $.use.model('Content');
 
 /**
  * ApiController
- * @type {ControllerService}
+ * @type {Xpresser.Controller.Handler}
  */
 const ApiController = $.handler({
     // Controller Name
     name: "ApiController",
-    // Controller Middlewares
+    // Controller Middleware
     middlewares: {},
     // Controller Default Service Error Handler.
     e: $$.defaultApiErrorHandler,
@@ -24,13 +24,14 @@ const ApiController = $.handler({
 
 
     /**
-     * Example Method.
+     * Connect .
      * @returns {*}
      */
-    connect: async (http, {device, user}) => {
+    connect: async (http, {device}) => {
         let used_by = http.body('device_id', undefined);
 
         if (!device.used) {
+            // noinspection JSCheckFunctionSignatures
             device = await device.$query().updateAndFetch({used: true, used_by})
         }
 
@@ -76,14 +77,30 @@ const ApiController = $.handler({
         return $$.toApi(http, {search, clips});
     },
 
+    /**
+     * Add content using the content add service.
+     */
     add: {'content.add': 'api'},
 
+    /**
+     * Delete Content
+     * @param http
+     * @param clip
+     * @returns {Promise<*>}
+     */
     delete: async (http, {clip}) => {
         const code = clip.code;
         await clip.$query().delete();
         return $$.toApi(http, {deleted: true, code})
     },
 
+    /**
+     * 404 error response.
+     * @param http
+     * @param boot
+     * @param error
+     * @returns {*}
+     */
     notFound: (http, boot, error) => error({
         type: '404',
         message: `Route not found!`

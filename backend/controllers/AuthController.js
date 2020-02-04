@@ -9,7 +9,7 @@ const DataSchema = {
 
 /**
  * AuthController
- * @type {ControllerService}
+ * @type {Xpresser.Controller.Handler}
  */
 const AuthController = $.handler({
     // Controller Name
@@ -17,6 +17,7 @@ const AuthController = $.handler({
     // Controller Default Service Error Handler.
     e: $$.defaultErrorHandler,
 
+    // Boot AuthController
     boot: async (http) => {
         let username = http.query().removeNull(true).get('username', false);
 
@@ -34,7 +35,7 @@ const AuthController = $.handler({
         const logged = http.isLogged();
         const user = http.authUser();
 
-        if(user){
+        if (user) {
             user.$pick([
                 'username',
             ])

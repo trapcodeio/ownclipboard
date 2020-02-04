@@ -1,7 +1,7 @@
 "use strict";
 /**
  * AppController
- * @type {ControllerService}
+ * @type {Xpresser.Controller.Handler}
  */
 const AppController = $.handler({
     // Controller Name
@@ -13,7 +13,8 @@ const AppController = $.handler({
 
 
     /**
-     * Example Method.
+     * Vue index method
+     * All routes goes here.
      * @returns {*}
      */
     vue: (http) => http.res.sendFile($.path.base("dist/index.html")),

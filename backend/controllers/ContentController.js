@@ -3,13 +3,15 @@ const Content = $.use.model("Content");
 
 /**
  * ContentController
- * @type {ControllerService}
+ * @type {Xpresser.Controller.Handler}
  */
 const ContentController = $.handler({
     // Controller Name
     name: "ContentController",
+
     // Controller Middlewares
     middlewares: {},
+
     // Controller Default Service Error Handler.
     e: $$.defaultErrorHandler,
 
@@ -33,7 +35,7 @@ const ContentController = $.handler({
     },
 
     /**
-     * Example Method.
+     * Get All contents
      * @returns {*}
      */
     all: async (http, {user}) => {
@@ -56,15 +58,30 @@ const ContentController = $.handler({
         return http.toApi({contents, search});
     },
 
+    /**
+     * Create content using Content.add service
+     */
     create: {
         'content.add': true
     },
 
+    /**
+     * Delete Content
+     * @param http
+     * @param content
+     * @returns {Promise<Knex.ColumnBuilder>}
+     */
     delete: async (http, {content}) => {
         await content.$query().delete();
         return http.toApi({});
     },
 
+    /**
+     * Delete all contents
+     * @param http
+     * @param user
+     * @returns {Promise<Knex.ColumnBuilder>}
+     */
     clear: async (http, {user}) => {
         const rows = await Content.query().where({user_id: user.id}).delete();
         return http.sayToApi(`${rows} clips deleted successfully.`);

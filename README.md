@@ -15,9 +15,9 @@ your **own** server with same functions but this time with your data in your con
 - [Shred-Bootstrap](https://www.npmjs.com/package/shred-bootstrap)
 
 ### Backend
-- [Nodejs](https://nodejs.org) (>=10)
-- [XpresserJs](https://xpresserjs.com) (>=0.1.71)
-- [xjs-cli](https://xpresserjs.com/xjs-cli.html) (>=0.1.11)
+- [Nodejs](https://nodejs.org) (>=12)
+- [XpresserJs](https://xpresserjs.com) (>=0.2.10)
+- [xjs-cli](https://xpresserjs.com/xjs-cli.html) (>=0.1.12)
 - [Mysql](https://www.npmjs.com/package/mysql)
 
 
@@ -53,7 +53,7 @@ yarn build
 Out of the box without any deep dive **sqlite3** is supported. a `database.sqlite` file will be created once your server has started.
 
 ##### Install Prod Tools (one Time)
-Xpresser uses Nodejs best ORM [knex](https://www.npmjs.com/package/knex), for database querying and migrations.
+Xpresser uses Nodejs best Mysql ORM [knex](https://www.npmjs.com/package/knex), for database querying and migrations.
 To install **knex** and other production tools you **must** run
 ```shell script
 xjs install-prod-tools
