@@ -18,6 +18,7 @@ const ContentController = $.handler({
     boot: async (http, error) => {
         // Get current auth user.
         const user = http.authUser();
+
         // Get Device from params
         let content = http.params.content || undefined;
 

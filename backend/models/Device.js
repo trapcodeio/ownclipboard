@@ -5,7 +5,7 @@
  * @class
  * @extends $.model
  */
-class Device extends $.model {
+class Device extends $.baseModel {
 
     /**
      * Name of model database table name.

@@ -49,6 +49,7 @@ module.exports = {
             }
         },
     },
+
     response: {
         cacheFiles: !isDev,
         cacheFileExtensions: ['js', 'css', 'woff2'],
@@ -57,7 +58,10 @@ module.exports = {
     plugins: {
         '@xpresser/auth': {
             model: 'User',
-            modelWhere: 'username'
+            modelWhere: 'username',
+            modelPasswordProvider: 'authPasswordProvider',
+            modelDataProvider: 'authDataProvider',
+            modelRegisterHandler: 'authRegisterHandler',
         }
     },
 

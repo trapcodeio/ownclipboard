@@ -13,5 +13,8 @@
     "stop_server": "pm2 stop",
     "start_console": "node"
   },
-  "jobs_path": "backend/jobs"
+  "jobs_path": "backend/jobs",
+  "extensions": [
+    "npm://@xpresser/sql"
+  ]
 }

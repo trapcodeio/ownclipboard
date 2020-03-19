@@ -4,7 +4,7 @@
 * @class
 * @extends $.model
 */
-class User extends $.model {
+class User extends $.baseModel {
 
     /**
     * Name of model database table name.
@@ -14,6 +14,15 @@ class User extends $.model {
     static get tableName() {
         return "users";
     }
+
+    /**
+     * @param data
+     * @return {Promise<*>}
+     */
+    static async authDataProvider(data) {
+        return User.query().where({username: data.key}).first();
+    }
+
 
     /**
      * Pick data returned to frontend javascript

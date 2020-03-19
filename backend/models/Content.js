@@ -5,7 +5,7 @@
  * @class
  * @extends $.model
  */
-class Content extends $.model {
+class Content extends $.baseModel {
 
     /**
      * Name of model database table name.
