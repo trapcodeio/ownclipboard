@@ -74,7 +74,7 @@ xjs migrate
 ### Start Backend Server
 ##### Development
 ```shell script
-node server.js
+node ownclipboard.js
 # or
 xjs start
 ```

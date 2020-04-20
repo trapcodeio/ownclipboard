@@ -515,10 +515,10 @@
     lodash.clone "^4.5.0"
     lodash.snakecase "^4.1.1"
 
-"@xpresser/sql@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@xpresser/sql/-/sql-0.1.3.tgz#929a0b62af39739ba4915f2a856f09c1453f390a"
-  integrity sha512-Txwd+h3gT1dpj6SBRu22zorKqCD0AnETD2kopOlRd/0cGALoDiZ0fkm+wN2p2Hr5wltyVTh8g5ozFm8QrPLEtA==
+"@xpresser/sql@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@xpresser/sql/-/sql-0.1.4.tgz#a37176d6cb55f3b06b3ad896734c673c69d090f1"
+  integrity sha512-AzpE9yUE68uJrXFCMq5SANC34hgtqx4yY3XI1YXQ11NB87MxmYSxpCDzZw04xE0zcSdOeV4OY//SFf0lRm5qcA==
   dependencies:
     abolish "^0.0.12"
     knex "^0.20.12"
@@ -8566,10 +8566,10 @@ xdg-basedir@^4.0.0:
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-4.0.0.tgz#4bc8d9984403696225ef83a1573cbbcb4e79db13"
   integrity sha512-PSNhEJDejZYV7h50BohL09Er9VaIefr2LMAf3OEmpCkjOi34eYyQYAXUTjEQtZJTKcF0E2UKTh+osDLsgNim9Q==
 
-xpresser@^0.2.24:
-  version "0.2.24"
-  resolved "https://registry.yarnpkg.com/xpresser/-/xpresser-0.2.24.tgz#1ec53bcf89a11b943ead211b228369f7e7586b7b"
-  integrity sha512-ZSDxlxrPW+giMMzhnfrgDADDMy5RftVvHOMBsN8S7Xj0XBMqzg8c46vb6XpctP6smScQYjIU78s6UbrNG9B2wQ==
+xpresser@^0.2.25:
+  version "0.2.25"
+  resolved "https://registry.yarnpkg.com/xpresser/-/xpresser-0.2.25.tgz#ddf9628b635978ec38de832bc4b3db516d3e8a4a"
+  integrity sha512-aqxNVoMzGZnZyEwBauEww48EE+DESeFI2Kwzy0no7K+t9Mv166Y81C3G7fw4gR63MUhM/6vt+ga+RsaSuMVyGg==
   dependencies:
     "@xpresser/router" "^1.0.9"
     body-parser "^1.19.0"
@@ -8578,6 +8578,7 @@ xpresser@^0.2.24:
     connect-session-knex "^1.6.0"
     cors "^2.8.5"
     dotenv "^8.2.0"
+    dotenv-expand "^5.1.0"
     ejs "^3.0.2"
     express "^4.17.1"
     express-flash "^0.0.2"
