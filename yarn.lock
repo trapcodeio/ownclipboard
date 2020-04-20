@@ -8566,10 +8566,10 @@ xdg-basedir@^4.0.0:
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-4.0.0.tgz#4bc8d9984403696225ef83a1573cbbcb4e79db13"
   integrity sha512-PSNhEJDejZYV7h50BohL09Er9VaIefr2LMAf3OEmpCkjOi34eYyQYAXUTjEQtZJTKcF0E2UKTh+osDLsgNim9Q==
 
-xpresser@^0.2.25:
-  version "0.2.25"
-  resolved "https://registry.yarnpkg.com/xpresser/-/xpresser-0.2.25.tgz#ddf9628b635978ec38de832bc4b3db516d3e8a4a"
-  integrity sha512-aqxNVoMzGZnZyEwBauEww48EE+DESeFI2Kwzy0no7K+t9Mv166Y81C3G7fw4gR63MUhM/6vt+ga+RsaSuMVyGg==
+xpresser@^0.2.26:
+  version "0.2.26"
+  resolved "https://registry.yarnpkg.com/xpresser/-/xpresser-0.2.26.tgz#6b8a123c3b5638e995d3817e621a12db43f496aa"
+  integrity sha512-FVDJ3kz7LyrCnQHqzDnlDc3VWebYX8D0FC1RcvPbpilNBzIm250XNT6/MRuzQZTyuV61szyUgxJ2wgyOqpn9Xw==
   dependencies:
     "@xpresser/router" "^1.0.9"
     body-parser "^1.19.0"
