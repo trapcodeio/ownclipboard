@@ -1,7 +1,7 @@
 "use strict";
-const Device = $.use.model('Device');
-const User = $.use.model('User');
-const Content = $.use.model('Content');
+const Device = require('../models/Device');
+const User = require('../models/User');
+const Content = require('../models/Content');
 
 
 /**

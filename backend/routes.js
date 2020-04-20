@@ -1,6 +1,3 @@
-/**
- * @type {import("@xpresser/router") | XpresserRouter}
- */
 const Route = $.router;
 
 // Require Api Routes

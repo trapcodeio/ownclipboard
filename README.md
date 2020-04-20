@@ -3,7 +3,7 @@ Demo [ownclipboard.com](https://ownclipboard.com)
 
 OwnClipboard was built out of the need to copy/paste text across multiple devices via an application or direct browser access.
 
-Also **Own**Clipboard as the name says was built to be owned, meaning that you can host your **own** clipboard on
+Also, **Own**Clipboard as the name says was built to be owned, meaning that you can host your **own** clipboard on
 your **own** server with same functions but this time with your data in your control.
 
 
@@ -16,7 +16,7 @@ your **own** server with same functions but this time with your data in your con
 
 ### Backend
 - [Nodejs](https://nodejs.org) (>=12)
-- [XpresserJs](https://xpresserjs.com) (>=0.2.10)
+- [XpresserJs](https://xpresserjs.com) (>=0.2.24)
 - [xjs-cli](https://xpresserjs.com/xjs-cli.html) (>=0.1.12)
 - [Mysql](https://www.npmjs.com/package/mysql)
 

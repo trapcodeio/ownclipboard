@@ -1,5 +1,5 @@
 "use strict";
-const Content = $.use.model("Content");
+const Content = require("../models/Content");
 
 /**
  * ContentController

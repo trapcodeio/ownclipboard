@@ -1,6 +1,6 @@
 "use strict";
 const bcrypt = require("bcryptjs");
-const User = $.use.model('User');
+const User = require('../models/User');
 
 const DataSchema = {
     username: 3,

@@ -1,5 +1,5 @@
 "use strict";
-const Device = $.use.model('Device');
+const Device = require('../models/Device');
 /**
  * Api
  */
