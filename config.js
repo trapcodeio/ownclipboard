@@ -1,5 +1,5 @@
 const Base = __dirname;
-const env = require('xpresser/env')(Base);
+const env = require('@xpresser/env')(Base);
 const isDev = env['NODE_ENV'] === 'development';
 // const ngrok = 'clip.ngrok.io';
 const ngrok = false;
@@ -20,6 +20,13 @@ module.exports = {
     },
     database: {
         startOnBoot: true,
+        config: {
+            client: 'sqlite3',
+            connection: () => ({
+                filename: __dirname + '/database.sqlite'
+            }),
+            useNullAsDefault: true
+        },
         /*config: {
             client: env['DATABASE_CLIENT'],
             connection: {
@@ -40,7 +47,7 @@ module.exports = {
         jsonConfigs: 'backend://',
     },
     session: {
-        startOnBoot: true,
+        useDefault: true,
         cookie: {
             domain
         },
@@ -61,10 +68,10 @@ module.exports = {
     plugins: {
         '@xpresser/auth': {
             model: 'User',
-            modelWhere: 'username',
-            modelPasswordProvider: 'authPasswordProvider',
-            modelDataProvider: 'authDataProvider',
-            modelRegisterHandler: 'authRegisterHandler',
+            modelPrimaryKey: 'username',
+            userPasswordProvider: 'authPasswordProvider',
+            userDataProvider: 'authDataProvider',
+            userRegisterHandler: 'authRegisterHandler',
         }
     },
 

@@ -15,7 +15,7 @@ const distFolderExistsOrError = (next) => {
     return next();
 };
 
-$.on.bootServer([
+$.on.expressInit([
     distFolderExistsOrError,
     require('./backend/extend')
 ]);

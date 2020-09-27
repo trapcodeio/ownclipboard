@@ -4,7 +4,7 @@ import moment from "moment";
 import VueTrapPack from 'vue-trap-pack';
 import VTPBuilder from 'vue-trap-pack/Builder';
 import {___} from '../storage/shared/routes-encrypted';
-import XjsRoutesHandler from 'vue-trap-pack/utils/XjsRouteToUrl';
+import XjsRoutesHandler from 'vue-trap-pack/utils/XpresserRouteToUrl';
 import HttpRequest from 'vue-trap-pack/HttpRequest';
 
 import LoadingButton from "./components/LoadingButton";
@@ -18,7 +18,7 @@ const XjsRoutes = JSON.parse(atob(___));
 const $api = new HttpRequest();
 $api.isXmlRequest();
 
-if (window.hasOwnProperty('NProgress'))
+if (window['NProgress'])
     $api.hasNprogress(window['NProgress']);
 
 $api.routeHandler = XjsRoutesHandler(XjsRoutes);

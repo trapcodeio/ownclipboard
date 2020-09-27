@@ -1,6 +1,6 @@
 {
   "dev": {
-    "main": "server.js",
+    "main": "ownclipboard.js",
     "start_cron": "node",
     "start_server": "nodemon",
     "start_console": "node"
