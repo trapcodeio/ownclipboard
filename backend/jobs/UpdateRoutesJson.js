@@ -5,7 +5,9 @@ const PathHelper = require('xpresser/dist/src/Helpers/Path');
  *  Job: updateRoutesJson
  */
 module.exports = {
-    command: 'updateRoutesJson',
+    use: {
+        routes: true
+    },
     // Job Handler
     handler(args, job) {
         // Your Job Here
