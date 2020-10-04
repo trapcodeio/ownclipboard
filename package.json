@@ -35,7 +35,6 @@
     "eslint": "^7.10.0",
     "eslint-plugin-vue": "^6.2.2",
     "nodemon": "^2.0.4",
-    "prismjs": "^1.21.0",
     "sass": "^1.26.11",
     "sass-loader": "^10.0.2",
     "shred-bootstrap": "^1.0.2",

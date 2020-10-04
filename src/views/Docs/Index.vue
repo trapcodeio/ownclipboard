@@ -153,10 +153,9 @@
 </template>
 
 <script>
-    import 'prismjs';
-    import "prismjs/themes/prism-okaidia.css";
-
     import VueJsonPretty from 'vue-json-pretty';
+    import 'vue-json-pretty/lib/styles.css';
+
     import apiKeyNotFound from './jsons/api_key_not_found';
     import apiKeyNotValid from './jsons/api_key_not_valid';
     import apiKeyNotConnected from './jsons/api_key_not_connected';
@@ -208,9 +207,6 @@
 </script>
 
 <style lang="scss" scoped>
-    /*@import "~prismjs/themes/prism-dark.css";*/
-
-
     p, .text-monospace {
         span:not(.ignore) {
             color: #f89406;

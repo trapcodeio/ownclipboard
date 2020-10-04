@@ -18,6 +18,7 @@ module.exports = {
             cors: true
         }
     },
+
     database: {
         startOnBoot: true,
         config: {
