@@ -12,7 +12,7 @@ module.exports = {
     server: {
         domain,
         port: env['APP_PORT'],
-        includePortInUrl: !ngrok,
+        includePortInUrl: isDev && !ngrok,
         use: {
             session: false,
             cors: true
