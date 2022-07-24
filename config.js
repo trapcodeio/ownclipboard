@@ -47,6 +47,7 @@ module.exports = {
         public: 'dist',
         jsonConfigs: 'backend://',
     },
+    
     session: {
         useDefault: true,
         cookie: {
