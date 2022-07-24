@@ -9,7 +9,7 @@ const loggedRoutes = require('./routes/logged.routes');
 Route.path('/secure').middleware('XhrRequestsOnly');
 Route.path('/secure', apiRoutes);
 Route.path('/secure/logged', loggedRoutes).middleware(['Auth']);
-Route.routesAfterPlugins =  () => {
+Route.routesAfterPlugins = () => {
     Route.get('/*', 'App@vue');
 };
 
