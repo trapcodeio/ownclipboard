@@ -1,8 +1,8 @@
-const xpresser = require('xpresser');
+const {init} = require('xpresser');
 const config = require('./config');
 
 // Initialize Xpresser
-const $ = xpresser(config);
+const $ = init(config);
 
 // Check if dist folder exists.
 const distFolderExistsOrError = (next) => {

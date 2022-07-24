@@ -1,11 +1,12 @@
 "use strict";
+const BaseModel = require('./BaseModel');
 
 /**
  * Content Model
  * @class
  * @extends $.model
  */
-class Content extends $.baseModel {
+class Content extends BaseModel {
 
     /**
      * Name of model database table name.

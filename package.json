@@ -13,12 +13,15 @@
   },
   "dependencies": {
     "@sweetalert2/themes": "^4.0.0",
-    "@xpresser/auth": "^0.1.18",
-    "@xpresser/env": "^1.0.3",
-    "@xpresser/sql": "^0.1.7",
+    "@xpresser/auth": "^1.0.2",
+    "@xpresser/env": "^2.0.8",
+    "@xpresser/session": "^1.8.1",
+    "@xpresser/sql": "^0.1.12",
     "bcryptjs": "^2.4.3",
+    "lodash": "^4.17.21",
     "moment": "^2.29.0",
     "mysql": "^2.17.1",
+    "sqlite3": "^5.0.10",
     "sweetalert2": "^10.3.5",
     "vue": "^2.6.12",
     "vue-clipboard2": "^0.3.1",
@@ -26,7 +29,7 @@
     "vue-trap-pack": "^0.0.37",
     "vuex": "^3.5.1",
     "xjs-cli": "^1.2.2",
-    "xpresser": "^0.2.56"
+    "xpresser": "^0.29.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-eslint": "^4.5.6",

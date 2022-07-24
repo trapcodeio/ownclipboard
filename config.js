@@ -1,5 +1,5 @@
 const Base = __dirname;
-const env = require('@xpresser/env')(Base);
+const env = require('@xpresser/env').LoadEnv(Base);
 const isDev = env['NODE_ENV'] === 'development';
 // const ngrok = 'clip.ngrok.io';
 const ngrok = false;
@@ -14,7 +14,7 @@ module.exports = {
         port: env['APP_PORT'],
         includePortInUrl: !ngrok,
         use: {
-            session: true,
+            session: false,
             cors: true
         }
     },

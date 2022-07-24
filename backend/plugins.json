@@ -1,3 +1,4 @@
-[
-  "npm://@xpresser/sql"
-]
+{
+  "npm://@xpresser/sql": true,
+  "npm://@xpresser/session": true
+}

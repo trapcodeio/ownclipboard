@@ -1,11 +1,13 @@
 "use strict";
 
+const BaseModel = require('./BaseModel');
+
 /**
  * Device Model
  * @class
  * @extends $.model
  */
-class Device extends $.baseModel {
+class Device extends BaseModel {
 
     /**
      * Name of model database table name.
