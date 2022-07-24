@@ -72,10 +72,10 @@ module.exports = {
         }
 
 
-        http.locals.set('api_key', api_key);
-        http.locals.set('api_device', device);
-        http.locals.set('api_user', user);
-        http.locals.set('api_clip', clip);
+        http.state.set('api_key', api_key);
+        http.state.set('api_device', device);
+        http.state.set('api_user', user);
+        http.state.set('api_clip', clip);
 
         // Update Hits in background
         $.events.emit('Api.updateHits', api_key);

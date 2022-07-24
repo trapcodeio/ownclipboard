@@ -14,10 +14,10 @@ const ApiController = $.handler({
     e: $$.defaultApiErrorHandler,
 
     boot: async (http) => {
-        const api_key = http.locals.get('api_key');
-        const device = http.locals.get('api_device');
-        const user = http.locals.get('api_user');
-        const clip = http.locals.get('api_clip');
+        const api_key = http.state.get('api_key');
+        const device = http.state.get('api_device');
+        const user = http.state.get('api_user');
+        const clip = http.state.get('api_clip');
 
         return {device, api_key, user, clip};
     },
